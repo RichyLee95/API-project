@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 const app = express();
+const routes = require('./routes');
 const { ValidationError } = require('sequelize');
 app.use(morgan('dev'));
 
@@ -41,6 +42,8 @@ if (!isProduction) {
       }
     })
   );
+
+app.use(routes); // Connect all the routes
 
   app.use((_req, _res, next) => {
     const err = new Error("The requested resource couldn't be found.");
@@ -74,11 +77,11 @@ if (!isProduction) {
       stack: isProduction ? null : err.stack
     });
   });
-const routes = require('./routes');
+
 
 // ...
 
-app.use(routes); // Connect all the routes
+
 
 
 
