@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Spot,
         {
-          foreignKey:ownerId,
+          foreignKey:'ownerId',
           onDelete:'CASCADE',
             hooks:'true'
         }
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Booking,
         {
-          foreignKey:userId,
+          foreignKey:'userId',
           onDelete:'CASCADE',
             hooks:'true'
         }
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Review,
         {
-          foreignKey:userId,
+          foreignKey:'userId',
           onDelete:'CASCADE',
             hooks:'true'
         }
