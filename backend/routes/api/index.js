@@ -12,6 +12,7 @@ router.use(restoreUser);
 router.use('/session', sessionRouter);
 router.use('/spots', spotRouter);
 router.use('/users', usersRouter);
+router.use('/review', reviewRouter);
 // GET /api/restore-user
 router.get(
   '/restore-user',
