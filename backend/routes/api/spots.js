@@ -27,7 +27,7 @@ router.get('/current', async (req, res) => {
 })
 
 
-//get spot by id NOT FINISHED
+//get spot by id NOT FINISHED needs numreviews, avgstarrating spotimages
 router.get('/:spotId', async (req, res) => {
     const spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId)
@@ -92,8 +92,8 @@ router.post('/:spotId/images', async (req, res) => {
 //Edit a spot
 router.put('/:spotId', async (req, res) => {
     const { spotId } = req.params
-    const updatedSpot = await Spot.findByPk(spotId)
-    if (!updatedSpot) {
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
         return res.status(404).json({
             "message": "Spot couldn't be found"
         })
@@ -160,7 +160,7 @@ router.get('/:spotId/reviews', async (req, res) => {
 //create a review for a spot based on userId
 router.post('/:spotId/reviews', async (req, res) => {
     const { review, stars } = req.body
-    const spotId = await Spot.findByPk(req.params.spotId)
+    const spot = await Spot.findByPk(spotId)
     const reviewcheck = await Review.findOne({
         where: {
             spotId: req.params.spotId,
@@ -172,7 +172,7 @@ router.post('/:spotId/reviews', async (req, res) => {
             "message": "User already has a review for this spot"
         })
     }
-    if (!spotId) {
+    if (!spot) {
         return res.status(404).json({
             "message": "Spot couldn't be found"
         })
