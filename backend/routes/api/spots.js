@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { Spot, SpotImage, User, Review, ReviewImage } = require('../../db/models');
+const { Spot, SpotImage, User, Review, ReviewImage, Booking } = require('../../db/models');
 const router = express.Router();
 
 //get all spots
@@ -186,8 +186,59 @@ router.post('/:spotId/reviews', async (req, res) => {
     res.json(newReview)
 })
 
+//get all bookings for a spot based on spotid
+router.get('/:spotId/bookings', async (req, res) => {
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
+    }
+    if (spot.ownerId !== req.user.id) {
+        const userBooking = await Booking.findAll({
+            where: {
+                spotId: spotId,
+            },
+            attributes: [
+                "spotId", "startDate", "endDate"
+            ],
+        });
+        return res.json({ Bookings: userBooking })
+    }
+    if (spot.ownerId == req.user.id) {
+        const ownerBooking = await Booking.findAll({
+            where: {
+                spotId: spotId,
+            },
+            include:{
+            model: User,
+            attributes: [
+                "id", "firstName", "lastName"
+            ],
+        },
+        });
+return res.json({ Bookings: ownerBooking })
+    }
+})
 
+//create a booking based on spotid STILL NEEDS WORK
+router.post('/:spotId/bookings', async (req, res) => {
+    const { startDate, endDate } = req.body
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
+    }
 
+    
+const booking = await Booking.findAll({
+        where: {
+            spotId: spotId,
+        }
+    })
 
-
+})
 module.exports = router;
