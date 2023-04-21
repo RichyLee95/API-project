@@ -11,16 +11,15 @@ const router = express.Router();
 router.delete('/:imageId', async (req, res) => {
     const {imageId} = req.params
     const deletedSpotImg = await SpotImage.findByPk(imageId);
-        await deletedSpotImg.destroy();
-        if (!imageId) {
+        if (!deletedSpotImg) {
             return res.status(404).json({
                 "message": "Spot Image couldn't be found"
             })
-        } else {
-            res.json({
+        }
+        await deletedSpotImg.destroy();
+          return res.status(200).json({
                 message: "Successfully deleted"
             })
-        }
     })
 
 
