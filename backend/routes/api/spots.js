@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { Spot, SpotImage, User } = require('../../db/models');
+const { Spot, SpotImage, User, Review, ReviewImage } = require('../../db/models');
 const router = express.Router();
 
 //get all spots
@@ -22,15 +22,21 @@ router.get('/current', async (req, res) => {
             ownerId: userId,
         },
     });
-    console.log(userId)
+
     return res.json(spot)
 })
 
 
-//get spot by id
+//get spot by id NOT FINISHED
 router.get('/:spotId', async (req, res) => {
     const spotId = req.params.spotId
-    const spot = await Spot.findAll({
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
+    }
+    const spothouse = await Spot.findAll({
         where: {
             id: spotId,
         },
@@ -42,13 +48,7 @@ router.get('/:spotId', async (req, res) => {
         },
         ],
     });
-    if (!spotId) {
-        return res.status(404).json({
-            "message": "Spot couldn't be found"
-        })
-    } else {
-        return res.json(spot)
-    }
+    return res.json(spothouse)
 })
 
 //Create a spot
@@ -66,6 +66,12 @@ router.post('/', async (req, res) => {
 router.post('/:spotId/images', async (req, res) => {
     const { spotId } = req.params
     const { url, preview } = req.body
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
+    }
     const spotImage = await SpotImage.findOne({
         where: {
             spotId
@@ -75,17 +81,12 @@ router.post('/:spotId/images', async (req, res) => {
         url,
         preview
     })
-    if (!spotId) {
-        return res.status(404).json({
-            "message": "Spot couldn't be found"
-        })
-    } else {
-        res.json({
-            id: Image.id,
-            url: Image.url,
-            preview: Image.preview
-        })
-    }
+    res.json({
+        id: Image.id,
+        url: Image.url,
+        preview: Image.preview
+    })
+
 })
 
 //Edit a spot
@@ -122,12 +123,71 @@ router.delete('/:spotId', async (req, res) => {
         return res.status(404).json({
             "message": "Spot couldn't be found"
         })
-    }else{
-    res.json({
-        message: "Successfully deleted"
-    })
-}
-
+    } else {
+        res.json({
+            message: "Successfully deleted"
+        })
+    }
 })
+
+//get all reviews by spotid
+router.get('/:spotId/reviews', async (req, res) => {
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
+    }
+    const review = await Review.findAll({
+        where: {
+            spotId: spotId,
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName'],
+            },
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url']
+            }
+        ]
+    });
+    return res.json(review)
+})
+
+//create a review for a spot based on userId
+router.post('/:spotId/reviews', async (req, res) => {
+    const { review, stars } = req.body
+    const spotId = await Spot.findByPk(req.params.spotId)
+    const reviewcheck = await Review.findOne({
+        where: {
+            spotId: req.params.spotId,
+            userId: req.user.id,
+        },
+    })
+    if (reviewcheck) {
+        return res.status(500).json({
+            "message": "User already has a review for this spot"
+        })
+    }
+    if (!spotId) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
+    }
+    const newReview = await Review.create({
+        userId: req.user.id,
+        spotId: spotId.id,
+        review,
+        stars
+    })
+    res.json(newReview)
+})
+
+
+
+
 
 module.exports = router;
