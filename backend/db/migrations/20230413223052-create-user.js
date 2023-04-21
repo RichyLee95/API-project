@@ -20,10 +20,10 @@ module.exports = {
         unique: true
       },
       firstName:{
-        type: Sequelize.STRING(30),
+        type:Sequelize.STRING(30),
       },
       lastName:{
-        type: Sequelize.STRING(30),
+        type:Sequelize.STRING(30),
       },
       email: {
         type: Sequelize.STRING(256),
