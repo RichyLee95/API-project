@@ -144,7 +144,7 @@ spot.Reviews.forEach((review)=>{
 })
 
 
-//get spot by id  username and spot img created at, updated at,add alias
+//get spot by id
 router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params
     const spot = await Spot.findByPk(spotId)
@@ -191,16 +191,16 @@ router.get('/:spotId', async (req, res) => {
     return res.status(200).json(spotarr)
 })
 
-//Create a spot REMOVE UPDATED AT, CREATED AT,ID
+//Create a spot 
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     const newSpot = await Spot.create({
-        address, city, state, country, lat, lng, name, description, price
+       ownerId:req.user.id, address, city, state, country, lat, lng, name, description, price
     })
     res.json(newSpot)
 })
 
-//Add img to spot based on spotid ADD SPOT OWNER ID, 403, ADD LIMIT
+//Add img to spot based on spotid
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     const { spotId } = req.params
     const { url, preview } = req.body
@@ -227,7 +227,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
 })
 
-//Edit a spot ADD UPDATED SPOT OBJ 403 isnt working
+//Edit a spot
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     const { spotId } = req.params
     const spot = await Spot.findByPk(spotId)
