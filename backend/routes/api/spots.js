@@ -96,51 +96,99 @@ const validateQuery = [
 //get all spots NEEDS PREVIEW IMG AND AVG RATING also is in array, must change
 router.get('/',validateQuery, async (req, res) => {
     const spots = await Spot.findAll()
+
+    const pagination = {}
+    if((!page) || !parseInt(page) >0 ) page =1
+    if((!size) || !parseInt(size) >0 ) size =20
+    if(parseInt(page)>10) page = 10
+    if(parseInt(size) >20) size =20
+
+    pagination.limit = size
+    pagination.offset = size * (page-1)
+
     return res.status(200).json(spots)
 })
 
 
-//get all spots by current user NEEDS PREVIEW IMG AVG RATING and 403
+//get all spots by current user
 router.get('/current', requireAuth, async (req, res) => {
-    // const { spotId } = req.params
-    // const spot = await Spot.findByPk(spotId)
     const userId = req.user.id
-    // if (userId !== spot.ownerId) {
-    //     return res.status(403).json({ "message": "Forbidden" })
-    // }
     const userspot = await Spot.findAll({
         where: {
             ownerId: userId,
         },
+        include: [{model: SpotImage}, {model: Review}],
     });
+let arr = []
 
-    return res.status(200).json(userspot)
+userspot.forEach((spot)=>{
+    arr.push(spot.toJSON())
+})
+arr.forEach((spot)=>{
+    let star = 0
+    let count = 0
+spot.Reviews.forEach((review)=>{
+    star += review.stars
+    count++
+})    
+  spot.avgRating = star / count  
+    spot.SpotImages.forEach((image)=>{
+        if(image.preview === true){
+            spot.previewImage = image.url
+        }
+    })
+})
+    arr.forEach((spot)=> delete spot.SpotImages)
+    arr.forEach((spot)=> delete spot.Reviews)
+    return res.status(200).json({Spots:arr})
 })
 
 
-//get spot by id NOT FINISHED needs numreviews, avgstarrating, remove username and spot img created at, updated at,add alias
+//get spot by id  username and spot img created at, updated at,add alias
 router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params
     const spot = await Spot.findByPk(spotId)
-    if (!spot) {
-        return res.status(404).json({
-            "message": "Spot couldn't be found"
-        })
-    }
     const spothouse = await Spot.findAll({
         where: {
             id: spotId,
         },
         include: [{
-            model: SpotImage
+            model:Review
+        },
+        {
+            model: SpotImage,
+            attributes: ['id', 'url', 'preview']
         },
         {
             model: User,
+            as:'Owner',
+            attributes: ['id', 'firstName', 'lastName']
             
         },
         ],
     });
-    return res.status(200).json(spothouse)
+    if (!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
+    }
+    let arr = []
+    spothouse.forEach((spot)=>{
+        arr.push(spot.toJSON())
+    })
+    arr.forEach((spot)=>{
+        let star = 0
+        let count = 0
+        spot.Reviews.forEach((review)=>{
+            star += review.stars
+            count++
+        })
+        spot.avgStarRating = star / count
+        spot.numReviews = count
+    })
+    arr.forEach((spot)=> delete spot.Reviews)
+    const [spotarr] = arr
+    return res.status(200).json(spotarr)
 })
 
 //Create a spot REMOVE UPDATED AT, CREATED AT,ID
