@@ -10,7 +10,6 @@ const router = express.Router();
 const validateReview = [
     check('review')
         .exists({ checkFalsy: true })
-        .isDecimal()
         .withMessage("Review text is required"),
     check('stars')
         .exists({ checkFalsy: true })
@@ -28,7 +27,10 @@ router.get('/current',requireAuth, async (req, res) => {
             userId: UserId,
         },
         include: [
-            { model: User },
+            { model: User,
+                attributes:[
+                    'id','firstName','lastName'
+                ] },
             {
                 model: Spot,
                 attributes: [
@@ -56,7 +58,19 @@ router.get('/current',requireAuth, async (req, res) => {
             }
         ]
     });
-    return res.status(201).json(review)
+    let arr = []
+    review.forEach(review=>{
+        arr.push(review.toJSON())
+    })
+    arr.forEach(review=>{
+        review.Spot.SpotImages.forEach(img=>{
+            if(img.preview ===true){
+                review.Spot.previewImage=img.url
+            }
+        })
+    })
+    arr.forEach(review => delete review.Spot.SpotImages)
+    return res.status(201).json({Reviews:arr})
 
 })
 
@@ -71,21 +85,23 @@ router.post('/:reviewId/images',requireAuth, async (req, res) => {
             reviewId
         }
     })
-    // const maxImage = Review.
+   
     if (!review) {
         return res.status(404).json({
             "message": "Review couldn't be found"
         })
     }
-    // if(userId !== review){
-    // return res.status(403).json({"message": "Forbidden"})
-    // }
+    if(userId !== review.userId){
+    return res.status(403).json({"message": "Forbidden"})
+    }
     if (reviewImage.length >= 10) {
         return res.status(403).json({ "message": "Maximum number of images for this resource was reached" })
     }
-    const Image = await SpotImage.create({
-        url
+    const Image = await ReviewImage.create({
+        url,
+        reviewId
     })
+    console.log(Image)
     return res.status(200).json({
         id: Image.id,
         url: Image.url,
@@ -106,7 +122,7 @@ router.put('/:reviewId',requireAuth,validateReview, async (req, res) => {
             "message": "Review couldn't be found"
         })
     }
-    if (userId !== updatedReview) {
+    if (userId !== updatedReview.userId) {
         return res.status(403).json({ "message": "Forbidden" })
     }
     const { review, stars } = req.body
@@ -120,14 +136,18 @@ router.put('/:reviewId',requireAuth,validateReview, async (req, res) => {
 
 })
 
-//delete a review need 403
+//delete a review
 router.delete('/:reviewId',requireAuth, async (req, res) => {
     const { reviewId } = req.params
+    const userId = req.user.id
     const deletedReview = await Review.findByPk(reviewId)
     if (!deletedReview) {
         return res.status(404).json({
             "message": "Review couldn't be found"
         })
+    }
+    if (userId !== deletedReview.userId) {
+        return res.status(403).json({ "message": "Forbidden" })
     }
     await deletedReview.destroy()
     res.status(200).json({
