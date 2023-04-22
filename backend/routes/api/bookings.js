@@ -3,12 +3,12 @@ const express = require('express')
 const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { Spot, SpotImage, User, Review, Booking } = require('../../db/models');
 const router = express.Router();
 
-//get all booking by current user
-router.get('/current', async (req, res) => {
+//get all booking by current user TAKE OUT DESC, CREATED AT, UPDATED AT
+router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id
     const booking = await Booking.findAll({
         where: {
@@ -22,45 +22,48 @@ router.get('/current', async (req, res) => {
     return res.status(200).json({ Bookings: booking })
 })
 
-//edit a booking
-router.put('/bookingId', async (req, res) => {
+//edit a booking REQUESTED RESOUCE NOT FOUND, ADD BOOKING CONFLICT
+router.put('/bookingId', requireAuth, async (req, res) => {
     const { bookingId } = req.params
-    const updatedBooking = await Spot.findByPk(bookingId)
+    const updatedBooking = await Spot.findByPk(bookingId,{include:[Spot]})
     const { startDate, endDate } = req.body
     if (!updatedBooking) {
         return res.status(404).json({
             "message": "Booking couldn't be found"
         })
     }
-    if(new Date(endDate) < new Date(startDate)){
+    if (new Date(endDate) < new Date(startDate)) {
         return res.status(400).json({
-            "message":"Bad request",
+            "message": "Bad request",
             "errors": {
                 "endDate": "endDate cannot come before startDate"
-              },
+            },
         })
     }
-    updatedSpot.startDate = startDate
-    updatedSpot.endDate = endDate
-    await updatedSpot.save();
+    if(updatedBooking.userId !== req.user.id){
+        return res.status(403).json({"message":"Booking must belong to the current user"})
+    }
+    updatedBooking.startDate = startDate
+    updatedBooking.endDate = endDate
+    await updatedBooking.save();
     res.status(200).json(updatedBooking)
 })
 
 
-//delete a booking
-router.delete('/:bookingId', async (req, res) => {
+//delete a booking INCLUDE SPOT,NEEDS BOOKING CANT BE DELETED IF STARTED
+router.delete('/:bookingId', requireAuth, async (req, res) => {
     const { bookingId } = req.params
     const deletedBooking = await Booking.findByPk(bookingId)
-    await deletedBooking.destroy()
+
     if (!bookingId) {
         return res.status(404).json({
             "message": "Booking couldn't be found"
         })
-    } else {
-        res.json({
-            message: "Successfully deleted"
-        })
-    }
+    } await deletedBooking.destroy()
+    res.json({
+        message: "Successfully deleted"
+    })
+
 })
 
 
