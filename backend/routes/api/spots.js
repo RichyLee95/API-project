@@ -7,10 +7,46 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { Spot, SpotImage, User, Review, ReviewImage, Booking } = require('../../db/models');
 const router = express.Router();
 
+const validateSpot = [
+    check('address')
+        .exists({ checkFalsy: true })
+        .withMessage("Street address is required"),
+    check('city')
+        .exists({ checkFalsy: true })
+        .withMessage("City is required"),
+    check('state')
+        .exists({ checkFalsy: true })
+        .withMessage("State is required"),
+    check('country')
+        .exists({ checkFalsy: true })
+        .withMessage("Country is required"),
+    check('lat')
+        .exists({ checkFalsy: true })
+        .isDecimal()
+        .withMessage("Latitude is not valid"),
+    check('lng')
+        .exists({ checkFalsy: true })
+        .isDecimal()
+        .withMessage("Longitude is not valid"),
+    check('name')
+        .exists({ checkFalsy: true })
+        .isLength({ max: 50 })
+        .withMessage("Name must be less than 50 characters"),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage("Description is required"),
+    check('price')
+        .exists({ checkFalsy: true })
+        .isDecimal()
+        .withMessage("Price per day is required"),
+    handleValidationErrors
+];
+
+
 //get all spots
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll()
-    return res.json(spots)
+    return res.status(200).json(spots)
 })
 
 
@@ -23,7 +59,7 @@ router.get('/current', async (req, res) => {
         },
     });
 
-    return res.json(spot)
+    return res.status(200).json(spot)
 })
 
 
@@ -48,7 +84,7 @@ router.get('/:spotId', async (req, res) => {
         },
         ],
     });
-    return res.json(spothouse)
+    return res.status(200).json(spothouse)
 })
 
 //Create a spot
@@ -81,7 +117,7 @@ router.post('/:spotId/images', async (req, res) => {
         url,
         preview
     })
-    res.json({
+    res.status(201).json({
         id: Image.id,
         url: Image.url,
         preview: Image.preview
@@ -124,7 +160,7 @@ router.delete('/:spotId', async (req, res) => {
             "message": "Spot couldn't be found"
         })
     } else {
-        res.json({
+        res.status(200).json({
             message: "Successfully deleted"
         })
     }
@@ -154,7 +190,7 @@ router.get('/:spotId/reviews', async (req, res) => {
             }
         ]
     });
-    return res.json(review)
+    return res.status(200).json(review)
 })
 
 //create a review for a spot based on userId
@@ -183,7 +219,7 @@ router.post('/:spotId/reviews', async (req, res) => {
         review,
         stars
     })
-    res.json(newReview)
+    res.status(201).json(newReview)
 })
 
 //get all bookings for a spot based on spotid
@@ -211,14 +247,14 @@ router.get('/:spotId/bookings', async (req, res) => {
             where: {
                 spotId: spotId,
             },
-            include:{
-            model: User,
-            attributes: [
-                "id", "firstName", "lastName"
-            ],
-        },
+            include: {
+                model: User,
+                attributes: [
+                    "id", "firstName", "lastName"
+                ],
+            },
         });
-return res.json({ Bookings: ownerBooking })
+        return res.status(200).json({ Bookings: ownerBooking })
     }
 })
 
@@ -233,8 +269,8 @@ router.post('/:spotId/bookings', async (req, res) => {
         })
     }
 
-    
-const booking = await Booking.findAll({
+
+    const booking = await Booking.findAll({
         where: {
             spotId: spotId,
         }

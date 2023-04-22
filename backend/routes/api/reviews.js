@@ -16,7 +16,7 @@ router.get('/current', async (req, res) => {
             userId: UserId,
         },
     });
-    return res.json(review)
+    return res.status(200).json(review)
 
 })
 
@@ -74,7 +74,7 @@ router.delete('/:reviewId', async (req, res) => {
             "message": "Review couldn't be found"
         })
     } else {
-        res.json({
+        res.status(200).json({
             message: "Successfully deleted"
         })
     }

@@ -19,7 +19,7 @@ router.get('/current', async (req, res) => {
         ],
     });
 
-    return res.json({ Bookings: booking })
+    return res.status(200).json({ Bookings: booking })
 })
 
 //edit a booking
