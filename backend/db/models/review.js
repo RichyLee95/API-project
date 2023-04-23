@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       Review.belongsTo(
         models.Spot,
         {
-          foreignKey:'SpotId',
+          foreignKey:'spotId',
 
         }
       )
