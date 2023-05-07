@@ -9,8 +9,8 @@ export const REMOVE_SPOT = 'spots/REMOVE_SPOT'
 export const getAllSpots = (spots) => ({
     type: GET_SPOTS,
     spots,
+    
 })
-
 export const getSingleSpot = (spot) => ({
     type: GET_SINGLE_SPOT,
     spot,
@@ -32,8 +32,10 @@ export const fetchSpots = () => async (dispatch) => {
     const res = await fetch('/api/spots')
 
     if (res.ok) {
-        const spots = await res.json()
-        dispatch(getAllSpots(spots))
+        const data = await res.json()
+        console.log('this is in fetch spots',data.Spots)
+        dispatch(getAllSpots(data))
+        return data.Spots
     }
 };
 
@@ -41,15 +43,21 @@ export const fetchSpots = () => async (dispatch) => {
 /** Spot reducer */
 
 const spotsReducer = (state = {}, action) => {
+    console.log('spot reducer',action)
     switch (action.type) {
-        case GET_SPOTS:
+        
+        case GET_SPOTS:{
+            console.log('spot reducer',action)
             const spotsState = {}
-            action.spots.forEach((spot) => {
+            action.spots.Spots.forEach((spot) => {
                 spotsState[spot.id] = spot
+                
             })
+            
             return spotsState
-            default:
-                return state
+        }
+        default:
+            return state
     }
 }
 
