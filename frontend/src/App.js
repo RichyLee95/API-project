@@ -4,6 +4,7 @@ import { Switch,Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotIndex from "./components/Spots/SpotIndex";
+import CreateSpotForm from './components/Spots/CreateSpotForm'
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -17,6 +18,7 @@ function App() {
       {isLoaded && (
       <Switch>
         <Route exact path='/' component={SpotIndex}/>
+        <Route path='/spots/new' component={CreateSpotForm}/>
         </Switch>
         )}
     </>

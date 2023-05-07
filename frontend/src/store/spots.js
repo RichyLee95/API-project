@@ -1,3 +1,4 @@
+import { csrfFetch } from "./csrf"
 /** Action Type Constants: */
 export const GET_SPOTS = 'spots/GET_SPOTS'
 export const GET_SINGLE_SPOT = 'spots/GET_SINGLE_SPOT'
@@ -15,7 +16,6 @@ export const getSingleSpot = (spot) => ({
     type: GET_SINGLE_SPOT,
     spot,
 })
-
 export const editSpot = (spot) => ({
     type: UPDATE_SPOT,
     spot,
@@ -38,7 +38,21 @@ export const fetchSpots = () => async (dispatch) => {
         return data.Spots
     }
 };
-
+export const createSpot = (spot) => async (dispatch) => {
+const res = await csrfFetch('/api/spots', {
+    method:'POST',
+    headers:{ 'Content-Type': 'application/json' },
+    body:JSON.stringify(spot)
+})
+if (res.ok){
+    const newSpot = await res.json()
+    dispatch(editSpot(newSpot))
+    return newSpot
+}else{
+    const errors = await res.json()
+    return errors
+}
+}
 
 /** Spot reducer */
 
@@ -51,14 +65,16 @@ const spotsReducer = (state = {}, action) => {
             const spotsState = {}
             action.spots.Spots.forEach((spot) => {
                 spotsState[spot.id] = spot
-                
             })
-            
             return spotsState
-        }
+        }    
+        case UPDATE_SPOT:{
+            return {...state, [action.spot.id]:action.spot}
+        }    
         default:
             return state
     }
+    
 }
 
 export default spotsReducer
