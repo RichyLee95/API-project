@@ -78,6 +78,17 @@ export const getSpotById = (spotId) => async (dispatch) =>{
         return errors
     }
 }
+export const deleteSpot = (spotId) => async (dispatch) => {
+    const res = await fetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    })
+    if(res.ok){
+        dispatch(deleteSpot(spotId))
+    }else{
+        const errors = await res.json()
+        return errors
+    }
+}
 
 
 /** Spot reducer */
