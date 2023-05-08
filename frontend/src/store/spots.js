@@ -53,10 +53,36 @@ if (res.ok){
     return errors
 }
 }
+export const updateSpot = (spot) => async (dispatch) => {
+    const res = await csrfFetch(`api/spots/${spot.id}`,{
+        method:'PUT',
+        headers:{'Content-Type': 'application/json' },
+        body:JSON.stringify(spot)
+    })
+    if(res.ok){
+        const updatedSpot = await res.json()
+        dispatch(editSpot(updatedSpot))
+        return updatedSpot
+    }else{
+        const errors = await res.json()
+        return errors
+    }
+}
+export const getSpotById = (spotId) => async (dispatch) =>{
+    const res = await csrfFetch(`/api/spots/${spotId}`)
+    if(res.ok){
+        const spotDetails = await res.json()
+        dispatch(getSingleSpot(spotDetails))
+    }else{
+        const errors = await res.json()
+        return errors
+    }
+}
+
 
 /** Spot reducer */
 
-const spotsReducer = (state = {}, action) => {
+const spotsReducer = (state = {allSpots:{}}, action) => {
     console.log('spot reducer',action)
     switch (action.type) {
         
@@ -67,6 +93,9 @@ const spotsReducer = (state = {}, action) => {
                 spotsState[spot.id] = spot
             })
             return spotsState
+        }
+        case GET_SINGLE_SPOT:{
+            return {...state, [action.spot.id]:action.spot}
         }    
         case UPDATE_SPOT:{
             return {...state, [action.spot.id]:action.spot}
