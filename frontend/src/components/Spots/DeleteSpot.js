@@ -11,7 +11,17 @@ const DeleteSpot = ({spot}) => {
 
     return (
         <li>
+      <div className="li-contents-flex">
+        <div className="button-container">
+          <Link
+            className="edit-link"
+            to={`/spots/${spot.id}/edit`}
+          >
+            Edit
+          </Link>
             <button onClick={handleDelete}>Delete </button>
+            </div>
+            </div>
         </li>
     )
 }

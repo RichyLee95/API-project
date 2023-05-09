@@ -22,9 +22,9 @@ function App() {
       <Switch>
         <Route exact path='/' component={SpotIndex}/>
         <Route path='/spots/new' component={CreateSpotForm}/>
-        <Route path='/spots/:spotId' component={SingleSpot}/>
-        <Route path='/spots/:spotId/edit' component={EditSpotForm}/>
+         <Route path='/spots/:spotId/edit' component={EditSpotForm}/>
         <Route path='/spots/current' component={ManageSpots}/>
+        <Route path='/spots/:spotId' component={SingleSpot}/>
         </Switch>
         )}
     </>

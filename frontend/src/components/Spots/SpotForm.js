@@ -38,10 +38,12 @@ const SpotForm = ({ spot, formType }) => {
             url,
         }
         if (formType === 'Update Spot') {
-            const editedSpot = await dispatch(updateSpot(spot))
+            
+            console.log('update thunk spot',spot)
+            const editedSpot =dispatch(updateSpot(spot))
             spot = editedSpot
         }else if (formType === 'Create Spot') {
-                const newSpot = await dispatch(createSpot(spot))
+                const newSpot =dispatch(createSpot(spot))
                 spot = newSpot
             }
             // if(spot.validationErrors){
@@ -52,7 +54,7 @@ const SpotForm = ({ spot, formType }) => {
         
         return (
             <form onSubmit={handleSubmit}>
-                <h1>Create a new Spot</h1>
+                <h1>{formType}</h1>
                 <h2>Where's your place located?</h2>
                 <p>Guests will only get your exact address once they booked a reservation.</p>
                 <label>

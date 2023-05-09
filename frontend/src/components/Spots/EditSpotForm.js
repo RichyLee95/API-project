@@ -7,16 +7,16 @@ import SpotForm from './SpotForm';
 const EditSpotForm = () => {
     const {spotId} = useParams()
     const spot = useSelector((state) =>
-    state.spots[spotId])
+    state.spots.allSpots[spotId])
     const dispatch = useDispatch()
-
+console.log('editSpotform',spot)
     useEffect(() => {
         dispatch(getSpotById(spotId))
     }, [dispatch, spotId])
     if(!spot) return (<></>)
 //not working still needs to be fixed
     return (
-        Object.keys(spot).length > 1 && (
+        Object.keys(spot).length >= 1 && (
             <>
             <SpotForm
             spot={spot}

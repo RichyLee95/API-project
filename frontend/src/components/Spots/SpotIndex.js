@@ -6,7 +6,7 @@ import { fetchSpots } from '../../store/spots';
 
 const SpotIndex = () => {
     const spots = Object.values(
-        useSelector((state) => (state.spots ? state.spots: []))
+        useSelector((state) => (state.spots ? state.spots.allSpots: []))
     )
     const dispatch = useDispatch()
 
@@ -17,8 +17,14 @@ console.log('CHECKING', spots)
     return(
         <section>
             <ul>
+            <Link
+        className="Create Spot"
+        to="/spots/new"
+      >
+        Create a New Spot
+      </Link>
                 {spots.map((spot)=>(
-                <p>{spot.name},{spot.city},{spot.state},${spot.price}night</p>    
+                <p key={spot.id}>{spot.name},{spot.city},{spot.state},${spot.price}night</p>    
                 ))}
                 <h1>img</h1> 
                 
