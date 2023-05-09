@@ -18,7 +18,7 @@ console.log('CHECKING', spots)
         <section>
             <ul>
                 {spots.map((spot)=>(
-                <p>{spot.id},{spot.city},{spot.state},{spot.price}</p>    
+                <p>{spot.name},{spot.city},{spot.state},${spot.price}night</p>    
                 ))}
                 <h1>img</h1> 
                 

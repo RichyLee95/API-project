@@ -104,7 +104,9 @@ const SpotForm = ({ spot, formType }) => {
                     />
                 </label>
                 <label>
-                    Description
+                Describe your place to guests
+                Mention the best features of your space, any special amentities like
+                fast wifi or parking, and what you love about the neighborhood.
                     <input
                         type='text'
                         value={description}
@@ -112,7 +114,9 @@ const SpotForm = ({ spot, formType }) => {
                     />
                 </label>
                 <label>
-                    Name
+                Create a title for your spot
+                Catch guests' attention with a spot title that highlights what makes
+                your place special.
                     <input
                         type='text'
                         value={name}
@@ -120,7 +124,9 @@ const SpotForm = ({ spot, formType }) => {
                     />
                 </label>
                 <label>
-                    Price
+                Set a base price for your spot
+                Competitive pricing can help your listing stand out and rank higher
+                in search results.
                     <input
                         type='text'
                         value={price}

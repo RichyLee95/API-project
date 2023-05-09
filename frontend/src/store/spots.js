@@ -4,6 +4,7 @@ export const GET_SPOTS = 'spots/GET_SPOTS'
 export const GET_SINGLE_SPOT = 'spots/GET_SINGLE_SPOT'
 export const UPDATE_SPOT = 'spots/UPDATE_SPOT'
 export const REMOVE_SPOT = 'spots/REMOVE_SPOT'
+export const GET_USER_SPOT = 'spots/GET_USER_SPOT'
 /**  Action Creators: */
 
 //get all spots
@@ -25,6 +26,10 @@ export const removeSpot = (spot) => ({
     type: REMOVE_SPOT,
     spot,
 })
+export const currentUserSpot = (spot) => ({
+    type: GET_USER_SPOT,
+    spot,
+})
 
 /** Thunk Action Creators: */
 //get all spots
@@ -33,7 +38,6 @@ export const fetchSpots = () => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
-        console.log('this is in fetch spots',data.Spots)
         dispatch(getAllSpots(data))
         return data.Spots
     }
@@ -90,10 +94,19 @@ export const deleteSpot = (spotId) => async (dispatch) => {
     }
 }
 
+export const getSpotsByUser = () => async (dispatch) => {
+    const res = await csrfFetch('/api/spots/current')
+    if (res.ok) {
+        const userSpot = await res.json()
+        dispatch(currentUserSpot(userSpot))
+        return userSpot.Spots
+    }
+}
+
 
 /** Spot reducer */
-
-const spotsReducer = (state = {allSpots:{}}, action) => {
+const initialState= {allSpots:{}, currentSpot:{}}
+const spotsReducer = (state = initialState, action) => {
     console.log('spot reducer',action)
     switch (action.type) {
         
@@ -111,6 +124,25 @@ const spotsReducer = (state = {allSpots:{}}, action) => {
         case UPDATE_SPOT:{
             return {...state, [action.spot.id]:action.spot}
         }    
+        case REMOVE_SPOT:{
+            const newState = {...state}
+            delete newState[action.reportId]
+            return newState
+        }
+        case GET_USER_SPOT:{
+            const newState = {...state, allSpots:{}, currentSpot:{...state.currentSpot}}
+            action.spots.forEach((spot)=>{
+                newState.allSpots[spot.id] = spot
+            })
+            return newState
+        }
+        // case GET_USER_SPOT:{
+        //     const newState = {...state, allSpots:{}, currentSpot:{...state.currentSpot}}
+        //     action.spots.forEach((spot)=>{
+        //         newState.allSpots[spot.id] = spot
+        //     })
+        //     return newState
+        // }
         default:
             return state
     }
