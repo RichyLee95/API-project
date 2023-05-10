@@ -22,9 +22,9 @@ export const editSpot = (spot) => ({
     spot,
 })
 
-export const removeSpot = (spot) => ({
+export const removeSpot = (spotId) => ({
     type: REMOVE_SPOT,
-    spot,
+    spotId,
 })
 export const currentUserSpot = (spot) => ({
     type: GET_USER_SPOT,
@@ -59,7 +59,7 @@ if (res.ok){
 }
 export const updateSpot = (spot) => async (dispatch) => {
     console.log('edit form thunk', spot.id)
-    const res = await csrfFetch(`api/spots/${spot.id}`,{
+    const res = await csrfFetch(`/api/spots/${spot.id}`,{
         method:'PUT',
         headers:{'Content-Type': 'application/json' },
         body:JSON.stringify(spot)
@@ -88,11 +88,11 @@ export const getSpotById = (spotId) => async (dispatch) =>{
     }
 }
 export const deleteSpot = (spotId) => async (dispatch) => {
-    const res = await fetch(`/api/spots/${spotId}`, {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
     if(res.ok){
-        dispatch(deleteSpot(spotId))
+        dispatch(removeSpot(spotId))
     }else{
         const errors = await res.json()
         return errors
@@ -142,8 +142,11 @@ const spotsReducer = (state = initialState, action) => {
                 }
         }    
         case REMOVE_SPOT:{
-            const newState = {...state}
-            delete newState[action.reportId]
+            const newState = {...state,currentSpot:{...state.currentSpot},allSpots:{
+                ...state.allSpots
+            }}
+            delete newState.allSpots[action.spotId]
+            delete newState.currentSpot[action.spotId]
             return newState
         }
         case GET_USER_SPOT:{
