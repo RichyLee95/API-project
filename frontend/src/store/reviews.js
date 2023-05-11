@@ -75,6 +75,17 @@ export const createReview = (review,spotId) => async (dispatch) => {
     //     return errors
     }
     }
+    export const deleteReview = (spotId) => async (dispatch) => {
+        const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+            method: 'DELETE'
+        })
+        if (res.ok) {
+            dispatch(removeReview(spotId))
+        } else {
+            const errors = await res.json()
+            return errors
+        }
+    }
     // export const updateReview = (review) => async (dispatch) => {
     //     const res = await csrfFetch(`/api/spots/${spot.id}`,{
     //         method:'PUT',

@@ -27,7 +27,7 @@ if(!spot){
       </Link>
 <div className='singleSpotImgs'>
     <div className='images'>
-        
+        {/* need to map */}
       {/* <img className='img1' src={spot.SpotImages[0].url}/>      
       <img className='img2' src={spot.SpotImages[1].url}/>
       <img className='img3' src={spot.SpotImages[2].url}/>
