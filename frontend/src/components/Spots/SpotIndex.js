@@ -35,13 +35,14 @@ const SpotIndex = ({spotId}) => {
 
                 {spotsArray.map((spot)=>(
                      
-                <p key={spot.id}>
+                <div key={spot.id}>
+                    <Link to={`/spots/${spot.id}`}>{spot.name}</Link>
                     {/* {spot.previewImage} */}
                     <img className='img1' src={spot.previewImage}/>
-                    {spot.name},
+
                     {spot.city},
                     {spot.state},
-                    ${spot.price}night</p>    
+                    ${spot.price}night</div>    
                 ))}
 
                 

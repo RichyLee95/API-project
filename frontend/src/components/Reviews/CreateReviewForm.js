@@ -1,13 +1,14 @@
 import ReviewForm from "./ReviewForm";
 
-const CreateReviewForm = () => {
-    const review = {
+const CreateReviewForm = ({spotId}) => {
+    const reviews = {
         review:'',
         stars:''
     }
     return(
         <ReviewForm
-        review={review}
+        reviews={reviews}
+        spotId={spotId}
         formType="Create Review"
         />
     )

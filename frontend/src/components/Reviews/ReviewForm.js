@@ -1,44 +1,50 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
-const ReviewForm = ({review, formType}) => {
+import { createReview } from '../../store/reviews';
+import { getSpotById } from '../../store/spots';
+const ReviewForm = ({ reviews, formType, spotId }) => {
     const history = useHistory()
-    const [review,setReview] = useState(review?.review)
-    const [stars,setStars] = useState(review?.stars) 
-
-    const handleSubmit = async (e) =>{
+    const [review, setReview] = useState('')
+    const [stars, setStars] = useState(1)
+    const dispatch = useDispatch()
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        review = {
-            ...review,
+        reviews = {
+            ...reviews,
+            review,
             stars
         }
-        if(formType==='Update Review'){
-            const editedReview = dispatch(updateReview(review))
-            review = editedReview
-        }else if (formType==='Create Review'){
-            const newReview = dispatch(createReview(review))
-            review= newReview
+        // if(formType==='Update Review'){
+        //     const editedReview = dispatch(updateReview(review))
+        //     review = editedReview
+        // }else 
+        if (formType === 'Create Review') {
+           await dispatch(createReview(reviews,spotId))
+           dispatch(getSpotById(spotId))
+            // review = newReview
         }
     }
     return (
         <form onSubmit={handleSubmit}>
-        <label>
-                    Review Desc
-                    <input
-                        type='text'
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Star Rating
-                    <input
-                        type='text'
-                        value={stars}
-                        onChange={(e) => setStars(e.target.value)}
-                    />
-                </label>
-                </form>
+            <label>
+                Review Desc
+                <input
+                    type='text'
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                />
+            </label>
+            <label>
+                Star Rating
+                <input
+                    type='text'
+                    value={stars}
+                    onChange={(e) => setStars(e.target.value)}
+                />
+            </label>
+            <button type='submit'>{formType}</button>
+        </form>
     )
 }
+export default ReviewForm

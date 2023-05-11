@@ -18,7 +18,6 @@ const ReviewIndex = ({spotId}) => {
 // console.log('this is reviews array',reviewArray)
     return(
         <ul>
-            <div> is this working</div>
             {reviewArray.map((review)=>(
                 <p key={review.id}> 
                 {review.userId}, {review.review}

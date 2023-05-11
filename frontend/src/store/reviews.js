@@ -60,38 +60,38 @@ export const getReviews = (spotId) => async (dispatch) => {
 //         return userReview.Reviews
 //     }
 // }
-// export const createReview = (review) => async (dispatch) => {
-//     const res = await csrfFetch('/api/spots', {
-//         method:'POST',
-//         headers:{ 'Content-Type': 'application/json' },
-//         body:JSON.stringify(review)
-//     })
-//     if (res.ok){
-//         const newReview = await res.json()
-//         dispatch(editReview(newReview))
-//         return newReview
-//     }else{
-//         const errors = await res.json()
-//         return errors
-//     }
-//     }
-//     export const updateReview = (review) => async (dispatch) => {
-//         const res = await csrfFetch(`/api/spots/${spot.id}`,{
-//             method:'PUT',
-//             headers:{'Content-Type': 'application/json' },
-//             body:JSON.stringify(review)
+export const createReview = (review,spotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method:'POST',
+        headers:{ 'Content-Type': 'application/json' },
+        body:JSON.stringify(review)
+    })
+    if (res.ok){
+        const newReview = await res.json()
+        dispatch(editReview(newReview))
+        return newReview
+    // }else{
+    //     const errors = await res.json()
+    //     return errors
+    }
+    }
+    // export const updateReview = (review) => async (dispatch) => {
+    //     const res = await csrfFetch(`/api/spots/${spot.id}`,{
+    //         method:'PUT',
+    //         headers:{'Content-Type': 'application/json' },
+    //         body:JSON.stringify(review)
             
-//         })
-//         if(res.ok){
-//             const updatedReview = await res.json()
-//             dispatch(editReview(updatedReview))
-//             return updatedReview
-//         // }else{
-//         //     const errors = await res.json()
-//         //     return errors
-//         }
+    //     })
+    //     if(res.ok){
+    //         const updatedReview = await res.json()
+    //         dispatch(editReview(updatedReview))
+    //         return updatedReview
+        // }else{
+        //     const errors = await res.json()
+        //     return errors
+    //     }
         
-//     }
+    // }
 /** Review reducer */
 const initialState = { allReviews: {}, currentReview: {} }//added current review
 const reviewsReducer = (state = initialState, action) => {
@@ -107,6 +107,27 @@ const reviewsReducer = (state = initialState, action) => {
                 reviewsState.allReviews[review.id] = review//have to update to key into allreviews of initial state
             })
             return reviewsState
+        }
+        // case UPDATE_REVIEW: {
+        //     return {
+        //         ...state,
+        //         allReviews: {
+        //             ...state.allReviews,
+        //             [action.review.id]: action.review
+        //         }
+        //     }
+        // }
+        case REMOVE_REVIEW: {
+            const newState = {
+                ...state,
+                currentReview: { ...state.currentReview },
+                allReviews: {
+                    ...state.allReviews
+                }
+            }
+            delete newState.allReviews[action.reviewId]
+            delete newState.currentReview[action.reviewId]
+            return newState
         }
         // case GET_SINGLE_REVIEW:{
         //     return {...state,
