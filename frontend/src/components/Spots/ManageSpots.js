@@ -29,7 +29,7 @@ console.log('this is manage spots',spots)
             <ul>
                 {spots.length > 0 && spots.map((spot) => (
         <div key={spot.id}>
-        <p>{spot.city},{spot.state}</p>
+        <p><img className='img1' src={spot.previewImage}/>{spot.city},{spot.state}</p>
         <p>${spot.price}night</p>
         <DeleteSpot
         spot={spot}

@@ -37,8 +37,8 @@ export const getReviews = (spotId) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
-        dispatch(getAllReviews(data.Reviews))
-        return data.Reviews
+        dispatch(getAllReviews(data))
+        return data
     }
 };
 // export const getReviewBySpot = (reviewId) => async (dispatch) =>{

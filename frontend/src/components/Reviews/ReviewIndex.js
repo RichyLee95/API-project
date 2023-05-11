@@ -7,18 +7,23 @@ import { getReviews } from '../../store/reviews';
 const ReviewIndex = ({spotId}) => {
     const reviewsObj = 
         useSelector((state) => (state.reviews.allReviews))
-    console.log('Get all reviews',spotId)
+        const reviewArray = Object.values(reviewsObj)
     const dispatch = useDispatch()
 
     useEffect(() =>{
         dispatch(getReviews(spotId))
-    },[dispatch])
-
+    },[dispatch, spotId])
+//     const userInfo=useSelector(state=>state.session.user)
+// console.log('review user info', userInfo)
+// console.log('this is reviews array',reviewArray)
     return(
         <ul>
-            {/* {reviews.map((review)=>(
-                <p key={review.id}>{review.userId}, {review.review}</p>    
-                ))} */}
+            <div> is this working</div>
+            {reviewArray.map((review)=>(
+                <p key={review.id}> 
+                {review.userId}, {review.review}
+                </p>    
+                ))}
         </ul>
     )
 }

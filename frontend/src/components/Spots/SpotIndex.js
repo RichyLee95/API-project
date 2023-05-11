@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchSpots } from '../../store/spots';
 
-const SpotIndex = () => {
-    const spots = Object.values(
-        useSelector((state) => (state.spots ? state.spots.allSpots: []))
-    )
+const SpotIndex = ({spotId}) => {
+    const spotsObj = 
+    
+        useSelector((state) => (state.spots.allSpots))
+    const spotsArray =Object.values(spotsObj)
     const dispatch = useDispatch()
 
     useEffect(() =>{
-        dispatch(fetchSpots())
-    },[dispatch])
-console.log('CHECKING', spots)
+        dispatch(fetchSpots(spotId))
+    },[dispatch,spotId])
+    console.log('SPOTINDEX ID', spotId)
     return(
         <section>
             <ul>
@@ -23,10 +24,26 @@ console.log('CHECKING', spots)
       >
         Create a New Spot
       </Link>
-                {spots.map((spot)=>(
-                <p key={spot.id}>{spot.name},{spot.city},{spot.state},${spot.price}night</p>    
+      <div className='singleSpotImgs'>
+        {/* {console.log('SPOT INDEX IMAGE',spotId)} */}
+    {/* <div className='prevImg'>
+        
+      <img className='img1' src={spots.SpotImages[0].url}/>      
+        
+    </div> */}
+</div>
+
+                {spotsArray.map((spot)=>(
+                     
+                <p key={spot.id}>
+                    {/* {spot.previewImage} */}
+                    <img className='img1' src={spot.previewImage}/>
+                    {spot.name},
+                    {spot.city},
+                    {spot.state},
+                    ${spot.price}night</p>    
                 ))}
-                <h1>img</h1> 
+
                 
             </ul>
         </section>

@@ -52,10 +52,9 @@ export const createSpot = (spot) => async (dispatch) => {
         const newSpot = await res.json()
         dispatch(editSpot(newSpot))
         for(const image of spot.SpotImages){
-         const createImageDispatch = createImage(newSpot.id, image)//call createImage thunk
-        await createImageDispatch(dispatch)//dispatch 
+       await dispatch (createImage(newSpot.id, image))
         }
-        return newSpot//creates new spot and images
+        return newSpot
     } else {
         const errors = await res.json()
         return errors

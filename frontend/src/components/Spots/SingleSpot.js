@@ -20,10 +20,13 @@ if(!spot){
     return (
 <>
 <div className='singleSpotImgs'>
-    <div className='prevImg'>
-        {spot.map((spot)=>(
-      <img src={spot.SpotImages}/>      
-        ))}
+    <div className='images'>
+        
+      <img className='img1' src={spot.SpotImages[0].url}/>      
+      <img className='img2' src={spot.SpotImages[1].url}/>
+      <img className='img3' src={spot.SpotImages[2].url}/>
+      <img className='img4' src={spot.SpotImages[3].url}/>
+      <img className='img5' src={spot.SpotImages[4].url}/>
         
     </div>
 </div>
