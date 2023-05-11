@@ -51,7 +51,11 @@ export const createSpot = (spot) => async (dispatch) => {
     if (res.ok) {
         const newSpot = await res.json()
         dispatch(editSpot(newSpot))
-        return newSpot
+        for(const image of spot.SpotImages){
+         const createImageDispatch = createImage(newSpot.id, image)//call createImage thunk
+        await createImageDispatch(dispatch)//dispatch 
+        }
+        return newSpot//creates new spot and images
     } else {
         const errors = await res.json()
         return errors
@@ -109,11 +113,11 @@ export const getSpotsByUser = () => async (dispatch) => {
     }
 }
 
-export const createImage = (spot) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spot.id}/images`, {
+export const createImage = (spotId,image) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(spot)
+        body: JSON.stringify(image)
     })
     const newImage = await res.json()
     dispatch(editSpot(newImage))

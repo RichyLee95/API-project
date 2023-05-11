@@ -38,7 +38,7 @@ const SpotForm = ({ spot, formType }) => {
             price,
             description,
             name,
-            spotImages:[
+            SpotImages:[
                 {preview:true, url:url1},
                 {preview:false, url:url2},
                 {preview:false, url:url3},
@@ -144,6 +144,35 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </label>
+                <label>
+                Liven up your spot with photos
+                    <input
+                        type='text'
+                        value={url1}
+                        onChange={(e) => seturl1(e.target.value)}
+                    />
+                    <input
+                        type='text'
+                        value={url2}
+                        onChange={(e) => seturl2(e.target.value)}
+                    />
+                    <input
+                        type='text'
+                        value={url3}
+                        onChange={(e) => seturl3(e.target.value)}
+                    />
+                    <input
+                        type='text'
+                        value={url4}
+                        onChange={(e) => seturl4(e.target.value)}
+                    />
+                    <input
+                        type='text'
+                        value={url5}
+                        onChange={(e) => seturl5(e.target.value)}
+                    />
+                </label>
+                
                 <button type='submit'>{formType}</button>
             </form>
         )

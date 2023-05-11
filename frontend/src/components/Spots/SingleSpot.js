@@ -19,13 +19,21 @@ if(!spot){
 }
     return (
 <>
+<div className='singleSpotImgs'>
+    <div className='prevImg'>
+        {spot.map((spot)=>(
+      <img src={spot.SpotImages}/>      
+        ))}
+        
+    </div>
+</div>
 <h2>{spot.name}</h2>
 <h3>{spot.city},{spot.state},{spot.country}</h3>
 <h3>Hosted by PLACEHOLDER FOR OWNER</h3>
 <div>${spot.price}night</div>
 
 <div>
-<ReviewIndex
+<ReviewIndex spotId={spotId}
 />
 </div>
 </>
