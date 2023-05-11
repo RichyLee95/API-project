@@ -17,7 +17,11 @@ const SpotForm = ({ spot, formType }) => {
     const [description, setDescription] = useState(spot?.description)
     const [name, setName] = useState(spot?.name)
     const [preview, setPreview] = useState(spot?.preview)
-    const [url, seturl] = useState(spot?.url)
+    const [url1, seturl1] = useState(spot?.url)
+    const [url2, seturl2] = useState(spot?.url)
+    const [url3, seturl3] = useState(spot?.url)
+    const [url4, seturl4] = useState(spot?.url)
+    const [url5, seturl5] = useState(spot?.url)
     const [validationErrors, setValidationErrors] = useState("")
 
     const handleSubmit = async (e) => {
@@ -34,8 +38,13 @@ const SpotForm = ({ spot, formType }) => {
             price,
             description,
             name,
-            preview,
-            url,
+            spotImages:[
+                {preview:true, url:url1},
+                {preview:false, url:url2},
+                {preview:false, url:url3},
+                {preview:false, url:url4},
+                {preview:false, url:url5},
+            ]
         }
         if (formType === 'Update Spot') {
             

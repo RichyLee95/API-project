@@ -14,7 +14,7 @@ console.log('editSpotform',spot)
         dispatch(getSpotById(spotId))
     }, [dispatch, spotId])
     if(!spot) return (<></>)
-//not working still needs to be fixed
+
     return (
         Object.keys(spot).length >= 1 && (
             <>

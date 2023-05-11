@@ -11,7 +11,7 @@ export const GET_USER_SPOT = 'spots/GET_USER_SPOT'
 export const getAllSpots = (spots) => ({
     type: GET_SPOTS,
     spots,
-    
+
 })
 export const getSingleSpot = (spot) => ({
     type: GET_SINGLE_SPOT,
@@ -43,46 +43,46 @@ export const fetchSpots = () => async (dispatch) => {
     }
 };
 export const createSpot = (spot) => async (dispatch) => {
-const res = await csrfFetch('/api/spots', {
-    method:'POST',
-    headers:{ 'Content-Type': 'application/json' },
-    body:JSON.stringify(spot)
-})
-if (res.ok){
-    const newSpot = await res.json()
-    dispatch(editSpot(newSpot))
-    return newSpot
-}else{
-    const errors = await res.json()
-    return errors
-}
+    const res = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
+    })
+    if (res.ok) {
+        const newSpot = await res.json()
+        dispatch(editSpot(newSpot))
+        return newSpot
+    } else {
+        const errors = await res.json()
+        return errors
+    }
 }
 export const updateSpot = (spot) => async (dispatch) => {
     console.log('edit form thunk', spot.id)
-    const res = await csrfFetch(`/api/spots/${spot.id}`,{
-        method:'PUT',
-        headers:{'Content-Type': 'application/json' },
-        body:JSON.stringify(spot)
-        
+    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
+
     })
-    console.log('updatespotthunk',spot)
-    if(res.ok){
+    console.log('updatespotthunk', spot)
+    if (res.ok) {
         const updatedSpot = await res.json()
         dispatch(editSpot(updatedSpot))
         return updatedSpot
-    // }else{
-    //     const errors = await res.json()
-    //     return errors
+        // }else{
+        //     const errors = await res.json()
+        //     return errors
     }
-    
+
 }
-export const getSpotById = (spotId) => async (dispatch) =>{
+export const getSpotById = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}`)
-    if(res.ok){
+    if (res.ok) {
         const spotDetails = await res.json()
         dispatch(getSingleSpot(spotDetails))
         return spotDetails
-    }else{
+    } else {
         const errors = await res.json()
         return errors
     }
@@ -91,9 +91,9 @@ export const deleteSpot = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
-    if(res.ok){
+    if (res.ok) {
         dispatch(removeSpot(spotId))
-    }else{
+    } else {
         const errors = await res.json()
         return errors
     }
@@ -103,67 +103,88 @@ export const getSpotsByUser = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots/current')
     if (res.ok) {
         const userSpot = await res.json()
-        console.log('get spot by user',userSpot)
+        console.log('get spot by user', userSpot)
         dispatch(currentUserSpot(userSpot.Spots))
         return userSpot.Spots
     }
 }
 
+export const createImage = (spot) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spot.id}/images`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
+    })
+    const newImage = await res.json()
+    dispatch(editSpot(newImage))
+    return newImage
+}
+
+
 
 /** Spot reducer */
-const initialState= {allSpots:{}, currentSpot:{}}//added current spot
+const initialState = { allSpots: {}, currentSpot: {} }//added current spot
 const spotsReducer = (state = initialState, action) => {
-    console.log('spot reducer',action)
+    console.log('spot reducer', action)
     switch (action.type) {
-        
-        case GET_SPOTS:{
-            console.log('spot reducer',action)
-            const spotsState = {...state,//have to now spread state and add allSpots obj
-                allSpots:{}
+
+        case GET_SPOTS: {
+            console.log('spot reducer', action)
+            const spotsState = {
+                ...state,//have to now spread state and add allSpots obj
+                allSpots: {}
             }
             action.spots.Spots.forEach((spot) => {
                 spotsState.allSpots[spot.id] = spot//have to update to key into allspots of initial state
             })
             return spotsState
         }
-        case GET_SINGLE_SPOT:{
-            return {...state,
-                allSpots:{
+        case GET_SINGLE_SPOT: {
+            return {
+                ...state,
+                allSpots: {
                     ...state.allSpots, //have to deep copy spread ...state to keep all prev AllSpots
-                 [action.spot.id]:action.spot
+                    [action.spot.id]: action.spot
                 },
-                }
-        }    
-        case UPDATE_SPOT:{
-            return {...state,
-                allSpots:{
+            }
+        }
+        case UPDATE_SPOT: {
+            return {
+                ...state,
+                allSpots: {
                     ...state.allSpots,
-                 [action.spot.id]:action.spot}
+                    [action.spot.id]: action.spot
                 }
-        }    
-        case REMOVE_SPOT:{
-            const newState = {...state,currentSpot:{...state.currentSpot},allSpots:{
-                ...state.allSpots
-            }}
+            }
+        }
+        case REMOVE_SPOT: {
+            const newState = {
+                ...state,
+                currentSpot: { ...state.currentSpot },
+                allSpots: {
+                    ...state.allSpots
+                }
+            }
             delete newState.allSpots[action.spotId]
             delete newState.currentSpot[action.spotId]
             return newState
         }
-        case GET_USER_SPOT:{
-            console.log('action',action)
+        case GET_USER_SPOT: {
+            console.log('action', action)
             const newState = {
                 ...state,
-                  currentSpot:{...state.currentSpot}}
-            action.spot.forEach((spot)=>{
+                currentSpot: { ...state.currentSpot }
+            }
+            action.spot.forEach((spot) => {
                 newState.currentSpot[spot.id] = spot
             })
             return newState
         }
-        
+
         default:
             return state
     }
-    
+
 }
 
 export default spotsReducer
