@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import DeleteReview from './DeleteReview';
 import { getReviews } from '../../store/reviews';
 
 const ReviewIndex = ({spotId}) => {
@@ -18,11 +18,16 @@ const ReviewIndex = ({spotId}) => {
 // console.log('this is reviews array',reviewArray)
     return(
         <ul>
+            
             {reviewArray.map((review)=>(
-                <p key={review.id}> 
+                <div key={review.id}>
+                <p> 
                 {review.userId}, {review.review}
-                </p>    
+                </p>  
+                  <DeleteReview review={review}/>
+                </div>
                 ))}
+                
         </ul>
     )
 }

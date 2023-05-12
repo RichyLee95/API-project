@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReviewIndex from '../Reviews/ReviewIndex';
 import { getSpotById } from '../../store/spots';
 import CreateReviewForm from '../Reviews/CreateReviewForm';
-
 const SingleSpot = () => {
     const {spotId} = useParams()
     const spot = useSelector((state) =>
@@ -44,8 +43,7 @@ if(!spot){
 <div>  
 Reviews
 <CreateReviewForm spotId={spotId}/>
-<ReviewIndex spotId={spotId}
-/>
+<ReviewIndex spotId={spotId}/>
 </div>
 </>
     )

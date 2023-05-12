@@ -50,6 +50,9 @@ const SpotForm = ({ spot, formType }) => {
             console.log('update thunk spot', spot)
             const editedSpot = dispatch(updateSpot(spot))
             spot = editedSpot
+            // if(spot.validationErrors){
+            //     return setValidationErrors(editedSpot.validationErrors)
+            // }
         } if (formType === 'Create Spot') {
             const newSpot = dispatch(createSpot(spot))
             spot = newSpot
