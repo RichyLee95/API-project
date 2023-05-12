@@ -22,14 +22,14 @@ const SpotForm = ({ spot, formType }) => {
     const [url3, seturl3] = useState(spot?.url)
     const [url4, seturl4] = useState(spot?.url)
     const [url5, seturl5] = useState(spot?.url)
-    const [validationErrors, setValidationErrors] = useState("")
+    const [validationErrors, setValidationErrors] = useState({})
     // useEffect(()=>{
     //     let validationErrors = {}
     //     if()
     // })
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let validationErrors = {}
+        setValidationErrors({})
         spot = {
             ...spot,
             country,
@@ -50,8 +50,6 @@ const SpotForm = ({ spot, formType }) => {
             ]
         }
         if (formType === 'Update Spot') {
-
-
             const editedSpot = dispatch(updateSpot(spot))
             spot = editedSpot
             if (spot.validationErrors) {

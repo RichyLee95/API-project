@@ -1,20 +1,20 @@
 import ReviewForm from "./ReviewForm";
 import OpenModalButton from "../OpenModalButton";
-const CreateReviewForm = ({spotId}) => {
+const CreateReviewForm = ({ spotId }) => {
     const reviews = {
-        review:'',
-        stars:''
+        review: '',
+        stars: ''
     }
-    return(
-        // <OpenModalButton buttonText={'Reviews'}
-        // modalComponent={
-        <ReviewForm
-        reviews={reviews}
-        spotId={spotId}
-        formType="Create Review"
+    return (
+        <OpenModalButton buttonText={'Create Review'}
+            modalComponent={
+                <ReviewForm
+                    reviews={reviews}
+                    spotId={spotId}
+                    formType="Create Review"
+                />}
         />
-    // }>
-        // </OpenModalButton>
+        
     )
 }
 export default CreateReviewForm
