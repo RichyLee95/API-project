@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -23,9 +23,13 @@ const SpotForm = ({ spot, formType }) => {
     const [url4, seturl4] = useState(spot?.url)
     const [url5, seturl5] = useState(spot?.url)
     const [validationErrors, setValidationErrors] = useState("")
+    // useEffect(()=>{
+    //     let validationErrors = {}
+    //     if()
+    // })
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        let validationErrors = {}
         spot = {
             ...spot,
             country,
@@ -50,18 +54,20 @@ const SpotForm = ({ spot, formType }) => {
 
             const editedSpot = dispatch(updateSpot(spot))
             spot = editedSpot
-            // if(spot.validationErrors){
-            //     return setValidationErrors(editedSpot.validationErrors)
-            // }
+            if (spot.validationErrors) {
+                return setValidationErrors(editedSpot.validationErrors)
+            }
         } if (formType === 'Create Spot') {
             const newSpot = dispatch(createSpot(spot))
             spot = newSpot
+            if (spot.validationErrors) {
+                return setValidationErrors(newSpot.validationErrors)
+            }
+        } else {
             history.pushState(`/spots/${spot.id}`)
+
+            // }else{
         }
-        // if(spot.validationErrors){
-        //     return setValidationErrors(newSpot.validationErrors)
-        // }else{
-            
         // }
     }
 
@@ -69,8 +75,10 @@ const SpotForm = ({ spot, formType }) => {
         <form onSubmit={handleSubmit}>
             <h1>{formType}</h1>
             <h2>Where's your place located?</h2>
+
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <label>
+                <p className="errors">{validationErrors.country}</p>
                 Country
                 <input
                     type='text'
@@ -79,6 +87,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
             </label>
             <label>
+                <p className="errors">{validationErrors.address}</p>
                 Street Address
                 <input
                     type='text'
@@ -88,6 +97,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 City
+                <p className="errors">{validationErrors.city}</p>
                 <input
                     type='text'
                     value={city}
@@ -96,6 +106,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 State
+                <p className="errors">{validationErrors.state}</p>
                 <input
                     type='text'
                     value={state}
@@ -120,8 +131,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 Describe your place to guests
-                Mention the best features of your space, any special amentities like
-                fast wifi or parking, and what you love about the neighborhood.
+                <p className="errors">{validationErrors.description}</p>
                 <input
                     type='text'
                     value={description}
@@ -130,8 +140,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 Create a title for your spot
-                Catch guests' attention with a spot title that highlights what makes
-                your place special.
+                <p className="errors">{validationErrors.name}</p>
                 <input
                     type='text'
                     value={name}
@@ -140,8 +149,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 Set a base price for your spot
-                Competitive pricing can help your listing stand out and rank higher
-                in search results.
+                <p className="errors">{validationErrors.price}</p>
                 <input
                     type='text'
                     value={price}

@@ -67,20 +67,24 @@ export const createSpot = (spot) => async (dispatch) => {
 }
 export const updateSpot = (spot) => async (dispatch) => {
     console.log('edit form thunk', spot.id)
+    try{
     const res = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
 
     })
-    console.log('updatespotthunk', spot)
-    if (res.ok) {
+    // console.log('updatespotthunk', spot)
+    // if (res.ok) {
         const updatedSpot = await res.json()
         dispatch(editSpot(updatedSpot))
         return updatedSpot
         // }else{
         //     const errors = await res.json()
         //     return errors
+    }catch (errors){
+        const data = await errors.json()
+        return data
     }
 
 }

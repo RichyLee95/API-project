@@ -36,8 +36,8 @@ if(!spot.SpotImages) return null
 </div>
 <h2>{spot.name}</h2>
 <h3>{spot.city},{spot.state},{spot.country}</h3>
-{/* <h3>Hosted By Placeholder for Owner</h3> */}
 <h3>Hosted By {spot.Owner?.firstName}{spot.Owner?.lastName}</h3>
+<div className='spot desc'>{spot.description}</div>
 <div>${spot.price}night</div>
 
 <div>  
