@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { createSpot, updateSpot } from '../../store/spots';
 
 const SpotForm = ({ spot, formType }) => {
-    // const history = useHistory()
+    const history = useHistory()
     const dispatch = useDispatch()
     const [country, setCountry] = useState(spot?.country)
     const [address, setAddress] = useState(spot?.address)
@@ -47,7 +47,7 @@ const SpotForm = ({ spot, formType }) => {
         }
         if (formType === 'Update Spot') {
 
-            console.log('update thunk spot', spot)
+
             const editedSpot = dispatch(updateSpot(spot))
             spot = editedSpot
             // if(spot.validationErrors){
@@ -56,11 +56,12 @@ const SpotForm = ({ spot, formType }) => {
         } if (formType === 'Create Spot') {
             const newSpot = dispatch(createSpot(spot))
             spot = newSpot
+            history.pushState(`/spots/${spot.id}`)
         }
         // if(spot.validationErrors){
         //     return setValidationErrors(newSpot.validationErrors)
         // }else{
-        //     history.pushState(`/spots/${spot.id}`)
+            
         // }
     }
 

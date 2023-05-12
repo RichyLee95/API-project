@@ -61,20 +61,25 @@ export const getReviews = (spotId) => async (dispatch) => {
 //     }
 // }
 export const createReview = (review,spotId) => async (dispatch) => {
+    try{
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method:'POST',
         headers:{ 'Content-Type': 'application/json' },
         body:JSON.stringify(review)
     })
-    if (res.ok){
+    // if (res.ok){
         const newReview = await res.json()
         dispatch(editReview(newReview))
-        return newReview
+        // return newReview
     // }else{
     //     const errors = await res.json()
     //     return errors
+    }catch (errors){
+        const data=await errors.json()
+        return data
     }
-    }
+}
+    
     export const deleteReview = (reviewId) => async (dispatch) => {
         const res = await csrfFetch(`/api/reviews/${reviewId}`, {
             method: 'DELETE'
@@ -86,23 +91,6 @@ export const createReview = (review,spotId) => async (dispatch) => {
             return errors
         }
     }
-    // export const updateReview = (review) => async (dispatch) => {
-    //     const res = await csrfFetch(`/api/spots/${spot.id}`,{
-    //         method:'PUT',
-    //         headers:{'Content-Type': 'application/json' },
-    //         body:JSON.stringify(review)
-            
-    //     })
-    //     if(res.ok){
-    //         const updatedReview = await res.json()
-    //         dispatch(editReview(updatedReview))
-    //         return updatedReview
-        // }else{
-        //     const errors = await res.json()
-        //     return errors
-    //     }
-        
-    // }
 /** Review reducer */
 const initialState = { allReviews: {}, currentReview: {} }//added current review
 const reviewsReducer = (state = initialState, action) => {

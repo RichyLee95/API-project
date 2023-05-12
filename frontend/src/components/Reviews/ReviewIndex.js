@@ -22,7 +22,7 @@ const ReviewIndex = ({spotId}) => {
             {reviewArray.map((review)=>(
                 <div key={review.id}>
                 <p> 
-                {review.userId}, {review.review}
+                {review.firstName}{review.createdAt} <p>{review.review}</p>
                 </p>  
                   <DeleteReview review={review}/>
                 </div>

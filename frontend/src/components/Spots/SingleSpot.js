@@ -16,6 +16,7 @@ const SingleSpot = () => {
 if(!spot){
     return null
 }
+if(!spot.SpotImages) return null
     return (
 <>
 <Link
@@ -25,19 +26,18 @@ if(!spot){
         Create a New Spot
       </Link>
 <div className='singleSpotImgs'>
+    {console.log('SINGLESPOT',spot)}
     <div className='images'>
-        {/* need to map */}
-      {/* <img className='img1' src={spot.SpotImages[0].url}/>      
-      <img className='img2' src={spot.SpotImages[1].url}/>
-      <img className='img3' src={spot.SpotImages[2].url}/>
-      <img className='img4' src={spot.SpotImages[3].url}/>
-      <img className='img5' src={spot.SpotImages[4].url}/>
-         */}
+        {spot.SpotImages.map((image)=>(
+            <img src={image.url}/>
+            
+        ))}
     </div>
 </div>
 <h2>{spot.name}</h2>
 <h3>{spot.city},{spot.state},{spot.country}</h3>
-<h3>Hosted by PLACEHOLDER FOR OWNER</h3>
+{/* <h3>Hosted By Placeholder for Owner</h3> */}
+<h3>Hosted By {spot.Owner?.firstName}{spot.Owner?.lastName}</h3>
 <div>${spot.price}night</div>
 
 <div>  

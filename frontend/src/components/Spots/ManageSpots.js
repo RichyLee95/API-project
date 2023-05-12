@@ -9,9 +9,9 @@ const ManageSpots = () => {
     // const spotsList = Object.values(spotsObj)
     const spots = Object.values(
         // useSelector((state) => (state.spots ? state.spots.allSpots: []))
-        useSelector((state) => (state.spots ? state.spots.currentSpot:[]))
+        useSelector((state) => (state.spots ? state.spots.currentSpot : []))
     )
-console.log('this is manage spots',spots)
+    console.log('this is manage spots', spots)
 
     useEffect(() => {
         dispatch(getSpotsByUser())
@@ -20,21 +20,21 @@ console.log('this is manage spots',spots)
     return (
         <section>
             <Link
-        className="Create Spot"
-        to="/spots/new"
-      >
-        Create a New Spot
-      </Link>
+                className="Create Spot"
+                to="/spots/new"
+            >
+                Create a New Spot
+            </Link>
             <h1>Manage Your Spots</h1>
             <ul>
                 {spots.length > 0 && spots.map((spot) => (
-        <div key={spot.id}>
-        <div><Link to={`/spots/${spot.id}`}>{spot.name}</Link><img className='img1' src={spot.previewImage}/>{spot.city},{spot.state}</div>
-        <p>${spot.price}night</p>
-        <DeleteSpot
-        spot={spot}
-        key={spot.id}/>
-        </div>
+                    <div key={spot.id}>
+                        <div><Link to={`/spots/${spot.id}`}>{spot.name}</Link><img className='img1' src={spot.previewImage} />{spot.city},{spot.state}</div>
+                        <p>${spot.price}night</p>
+                        <DeleteSpot
+                            spot={spot}
+                            key={spot.id} />
+                    </div>
                 ))}
             </ul>
         </section>

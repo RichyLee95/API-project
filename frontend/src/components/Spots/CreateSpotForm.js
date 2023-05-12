@@ -8,6 +8,10 @@ const CreateSpotForm = () => {
         state:'',
         lat:'',
         lng:'',
+        description:'',
+        price:'',
+        name:''
+
 
     }
     return (
