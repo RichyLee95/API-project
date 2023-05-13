@@ -9,7 +9,8 @@ const ReviewIndex = ({ spotId }) => {
         useSelector((state) => (state.reviews.allReviews))
     const reviewArray = Object.values(reviewsObj)
     const dispatch = useDispatch()
-
+    const loggedInUser = useSelector((state) =>
+    state.session.user)
     useEffect(() => {
         dispatch(getReviews(spotId))
     }, [dispatch, spotId])
@@ -27,12 +28,13 @@ const ReviewIndex = ({ spotId }) => {
                     <p>Posted by:{review.firstName}</p>
                     <p>Created at:{review.createdAt}</p>
                     <p>Review description:{review.review}</p>
-
+                    {loggedInUser ?(
                     <OpenModalButton buttonText={'Delete Review'}
                         modalComponent={
                             <DeleteReview review={review} />
                         }
                     />
+                    ) :""  }
                 </div>
             ))}
 

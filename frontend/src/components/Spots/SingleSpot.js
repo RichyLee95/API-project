@@ -10,31 +10,28 @@ const SingleSpot = () => {
         state.spots.allSpots[spotId])
     const dispatch = useDispatch()
 
-    const curruser = useSelector((state) =>
+    const loggedInUser = useSelector((state) =>
         state.session.user)
 
-    const reviewCounter = () => {
-        if (spot.numReviews === 0) {
-            return <i className="fa fa-star" />
-        }
-    }
     useEffect(() => {
         dispatch(getSpotById(spotId))
     }, [dispatch, spotId])
 
-
+    // if(!review) return null
     if (!spot) {
         return null
     }
     if (!spot.SpotImages) return null
     return (
         <>
+        {loggedInUser ?(
             <Link
                 className="Create Spot"
                 to="/spots/new"
             >
                 Create a New Spot
             </Link>
+            ) :""  }
             <div className='singleSpotImgs'>
                 {console.log('SINGLESPOT', spot)}
                 <div className='images'>
@@ -56,7 +53,7 @@ const SingleSpot = () => {
                 {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
                 {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating} · {spot.numReviews} review</h2>) : ''}
                 {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating}{spot.numReviews} review</h2>) : ''}
-                {spot.Owner.id === curruser.id ? ("") : <CreateReviewForm spotId={spotId} />}
+                {spot?.Owner?.id !== loggedInUser?.id ? (<CreateReviewForm spotId={spotId}/>) :""  }
                 {spot.numReviews === 0 ? (<p>Be the first to post a review!</p>) : ''}
                 {/* {spot.numReviews === 1 ? (<p>Be the first to post a review!</p>) : ''} */}
 

@@ -29,7 +29,10 @@ const SpotForm = ({ spot, formType }) => {
     // })
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setValidationErrors({})
+        let errors ={}
+        if(!country) errors.country='Country is required'
+
+        setValidationErrors(errors)
         spot = {
             ...spot,
             country,
@@ -76,7 +79,7 @@ const SpotForm = ({ spot, formType }) => {
 
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <label>
-                <p className="errors">{validationErrors.country}</p>
+                {validationErrors.country?<p className="errors">{validationErrors.country}</p>:''}
                 Country
                 <input
                     type='text'

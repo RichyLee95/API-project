@@ -6,11 +6,11 @@ import { fetchSpots } from '../../store/spots';
 
 const SpotIndex = ({ spotId }) => {
     const spotsObj =
-
         useSelector((state) => (state.spots.allSpots))
     const spotsArray = Object.values(spotsObj)
     const dispatch = useDispatch()
-
+    const loggedInUser = useSelector((state) =>
+    state.session.user)
     useEffect(() => {
         dispatch(fetchSpots(spotId))
     }, [dispatch, spotId])
@@ -20,12 +20,14 @@ const SpotIndex = ({ spotId }) => {
             <ul>
                 <div className='Logo'>Fightbnb</div>
                 <div className='profile'>
-                <Link
-                    className="Create Spot"
-                    to="/spots/new"
-                >
-                    Create a New Spot
-                </Link>
+                {loggedInUser ?(
+                    <Link
+                        className="Create Spot"
+                        to="/spots/new"
+                    >
+                        Create a New Spot
+                    </Link>
+                    ) :""  }
                 </div>
                 <div className='singleSpotImgs'>
 
@@ -41,7 +43,7 @@ const SpotIndex = ({ spotId }) => {
                         {spot.city},
                         {spot.state},
                         ${spot.price}night
-                     </div>
+                    </div>
                 ))}
 
 
