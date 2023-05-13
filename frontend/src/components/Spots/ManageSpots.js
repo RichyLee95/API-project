@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSpotsByUser } from '../../store/spots';
 import { Link } from 'react-router-dom';
 import DeleteSpot from './DeleteSpot';
+import OpenModalButton from "../OpenModalButton";
 const ManageSpots = () => {
     const dispatch = useDispatch()
     // const spotsObj = useSelector(state => state.spots.currentSpots[spot.id])
@@ -31,9 +32,17 @@ const ManageSpots = () => {
                     <div key={spot.id}>
                         <div><Link to={`/spots/${spot.id}`}>{spot.name}</Link><img className='img1' src={spot.previewImage} />{spot.city},{spot.state}</div>
                         <p>${spot.price}night</p>
+                        <button className='editbutton'><Link to={`/spots/${spot.id}/edit`}
+          >
+            Edit
+          </Link></button>
+                        <OpenModalButton buttonText={'Delete Review'}
+                        modalComponent={
                         <DeleteSpot
                             spot={spot}
                             key={spot.id} />
+                        }
+                        />
                     </div>
                 ))}
             </ul>

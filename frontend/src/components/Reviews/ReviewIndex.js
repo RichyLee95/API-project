@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteReview from './DeleteReview';
 import { getReviews } from '../../store/reviews';
-
+import OpenModalButton from "../OpenModalButton";
 const ReviewIndex = ({ spotId }) => {
     const reviewsObj =
         useSelector((state) => (state.reviews.allReviews))
@@ -19,17 +19,20 @@ const ReviewIndex = ({ spotId }) => {
     // console.log('review user info', userInfo)
     // console.log('this is reviews array',reviewArray)
     return (
-        
+
         <div>
             {/* <h2>Avg Star Rating Number of Reviews {review.Reviews.length}</h2> */}
             {reviewArray.map((review) => (
                 <div key={review.id}>
                     <p>Posted by:{review.firstName}</p>
                     <p>Created at:{review.createdAt}</p>
-                     <p>Review description:{review.review}</p>
-                     
-                    
-                    <DeleteReview review={review} />
+                    <p>Review description:{review.review}</p>
+
+                    <OpenModalButton buttonText={'Delete Review'}
+                        modalComponent={
+                            <DeleteReview review={review} />
+                        }
+                    />
                 </div>
             ))}
 
