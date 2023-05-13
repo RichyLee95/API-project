@@ -6,14 +6,16 @@ import { getSpotById } from '../../store/spots';
 import StarsRatingInput from './ReviewRating';
 
 const ReviewForm = ({ reviews, formType, spotId }) => {
-    const [validationErrors, setValidationErrors] = useState("")
+    const [validationErrors, setValidationErrors] = useState({})
     const history = useHistory()
     const [review, setReview] = useState('')
     const [stars, setStars] = useState('')
     const dispatch = useDispatch()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let validationErrors = {}
+        let errors = {}
+        if(!review) errors.review='Review input is required'
+        setValidationErrors(errors)
         reviews = {
             ...reviews,
             review,
@@ -22,6 +24,9 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
         if (formType === 'Create Review') {
            await dispatch(createReview(reviews,spotId))
            dispatch(getSpotById(spotId))
+           if (reviews.validationErrors) {
+            return setValidationErrors(reviews.validationErrors)
+        }
             // review = newReview
         }
     }
@@ -31,8 +36,8 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
     return (
         <form onSubmit={handleSubmit}>
             <label>
+            {validationErrors.review?<p className="errors">{validationErrors.review}</p>:''}
                 Review Desc
-                <p className="errors">{validationErrors.review}</p>
                 <input
                     type='text'
                     value={review}
