@@ -24,16 +24,20 @@ const SingleSpot = () => {
     if (!spot.SpotImages) return null
     return (
         <>
-        {loggedInUser ?(
-            <Link
-                className="Create Spot"
-                to="/spots/new"
-            >
-                Create a New Spot
-            </Link>
-            ) :""  }
+            {loggedInUser ? (
+                <Link
+                    className="Create Spot"
+                    to="/spots/new"
+                >
+                    Create a New Spot
+                </Link>
+            ) : ""}
+            <div className='singleSpotdetail'>
+                <h2>{spot.name}</h2>
+                <h3>{spot.city},{spot.state},{spot.country}</h3>
+                </div>
             <div className='singleSpotImgs'>
-                {console.log('SINGLESPOT', spot)}
+                {/* {console.log('SINGLESPOT', spot)} */}
                 <div className='images'>
                     {spot.SpotImages.map((image) => (
                         <img src={image.url} />
@@ -41,24 +45,35 @@ const SingleSpot = () => {
                     ))}
                 </div>
             </div>
-            <h2>{spot.name}</h2>
-            <h3>{spot.city},{spot.state},{spot.country}</h3>
+            
+            <div className='spot desc'>
             <h3>Hosted By {spot.Owner?.firstName}{spot.Owner?.lastName}</h3>
-            <div className='spot desc'>{spot.description}</div>
-            <div>${spot.price}night</div>
+            </div>
+            
+            <div className=''>{spot.description}</div>
+
+            <div className='reservebox'>
+                ${spot.price}night
+                <h4>
+                {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
+                {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
+                {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
+                </h4>
+                <button className='reserve-btn'>Reserve</button>
+                </div>
 
             <div>
                 {/* Reviews */}
                 <div></div>
                 {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
-                {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating} · {spot.numReviews} review</h2>) : ''}
-                {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating}{spot.numReviews} review</h2>) : ''}
-                {spot?.Owner?.id !== loggedInUser?.id ? (<CreateReviewForm spotId={spotId}/>) :""  }
-                {spot.numReviews === 0 ? (<p>Be the first to post a review!</p>) : ''}
+                {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
+                {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
+                {spot?.Owner?.id !== loggedInUser?.id ? (<CreateReviewForm spotId={spotId} />) : ""}
+                {spot.numReviews === 0 && spot?.Owner.id !== loggedInUser?.id ? (<p>Be the first to post a review!</p>) : ''}
                 {/* {spot.numReviews === 1 ? (<p>Be the first to post a review!</p>) : ''} */}
 
 
-                
+
                 {/* <CreateReviewForm spotId={spotId} /> */}
 
                 <ReviewIndex spotId={spotId} />

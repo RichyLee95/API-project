@@ -16,7 +16,7 @@ const StarsRatingInput = ({ stars, disabled, onChange }) => {
             onMouseLeave={() => { if (!disabled) setActiveRating(stars)} }
             onClick={() => { if (!disabled) onChange(1)} }
           >
-            <i className="fa fa-paw"></i>
+            <i className="fa fa-star"></i>
           </div>
           <div
             className={activeRating >= 2 ? "filled" : "empty"}
@@ -24,7 +24,7 @@ const StarsRatingInput = ({ stars, disabled, onChange }) => {
             onMouseLeave={() => { if (!disabled) setActiveRating(stars)} }
             onClick={() => { if (!disabled) onChange(2)} }
           >
-            <i className="fa fa-paw"></i>
+            <i className="fa fa-star"></i>
           </div>
           <div
             className={activeRating >= 3 ? "filled" : "empty"}
@@ -32,7 +32,7 @@ const StarsRatingInput = ({ stars, disabled, onChange }) => {
             onMouseLeave={() => { if (!disabled) setActiveRating(stars)} }
             onClick={() => { if (!disabled) onChange(3)} }
           >
-            <i className="fa fa-paw"></i>
+            <i className="fa fa-star"></i>
           </div>
           <div
             className={activeRating >= 4 ? "filled" : "empty"}
@@ -40,7 +40,7 @@ const StarsRatingInput = ({ stars, disabled, onChange }) => {
             onMouseLeave={() => { if (!disabled) setActiveRating(stars)} }
             onClick={() => { if (!disabled) onChange(4)} }
           >
-            <i className="fa fa-paw"></i>
+            <i className="fa fa-star"></i>
           </div>
           <div
             className={activeRating >= 5 ? "filled" : "empty"}
@@ -48,7 +48,7 @@ const StarsRatingInput = ({ stars, disabled, onChange }) => {
             onMouseLeave={() => { if (!disabled) setActiveRating(stars)} }
             onClick={() => { if (!disabled) onChange(5)} }
           >
-            <i className="fa fa-paw"></i>
+            <i className="fa fa-star"></i>
           </div>
         </div>
       );

@@ -10,14 +10,14 @@ const ReviewIndex = ({ spotId }) => {
     const reviewArray = Object.values(reviewsObj)
     const dispatch = useDispatch()
     const loggedInUser = useSelector((state) =>
-    state.session.user)
+        state.session.user)
     useEffect(() => {
         dispatch(getReviews(spotId))
     }, [dispatch, spotId])
 
 
     //     const userInfo=useSelector(state=>state.session.user)
-    // console.log('review user info', userInfo)
+    console.log('review user info', reviewsObj)
     // console.log('this is reviews array',reviewArray)
     return (
 
@@ -28,13 +28,14 @@ const ReviewIndex = ({ spotId }) => {
                     <p>Posted by:{review.firstName}</p>
                     <p>Created at:{review.createdAt}</p>
                     <p>Review description:{review.review}</p>
-                    {loggedInUser ?(
-                    <OpenModalButton buttonText={'Delete Review'}
-                        modalComponent={
-                            <DeleteReview review={review} />
-                        }
-                    />
-                    ) :""  }
+                    {loggedInUser?.id === review.userId &&
+                        <OpenModalButton buttonText={'Delete Review'}
+                            modalComponent={
+                                <DeleteReview review={review} />
+                            }
+                        /> }
+                    {/* {console.log('USER ID', loggedInUser.id)}
+                    {console.log('REVIEW ID', reviewsObj.userId)} */}
                 </div>
             ))}
 

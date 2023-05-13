@@ -11,8 +11,8 @@ const SpotForm = ({ spot, formType }) => {
     const [address, setAddress] = useState(spot?.address)
     const [city, setCity] = useState(spot?.city)
     const [state, setState] = useState(spot?.state)
-    const [lat, setLat] = useState(spot?.lat)
-    const [lng, setLng] = useState(spot?.lng)
+    const [lat, setLat] = useState(1)
+    const [lng, setLng] = useState(1)
     const [price, setPrice] = useState(spot?.price)
     const [description, setDescription] = useState(spot?.description)
     const [name, setName] = useState(spot?.name)
@@ -31,6 +31,14 @@ const SpotForm = ({ spot, formType }) => {
         e.preventDefault()
         let errors ={}
         if(!country) errors.country='Country is required'
+        if(!address) errors.address='Address is required'
+        if(!city) errors.city='City is required'
+        if(!state) errors.state='State is required'
+        if(description.length < 30) errors.description='Description needs a minimum of 30 characters'
+        if(!name) errors.name='Name is required'
+        if(!price) errors.price='Price is required'
+        if(!url1) errors.url1='Preview image is required'
+        if(!url2) errors.url2='Image URL must end in .png, .jpg, or .jpeg'
 
         setValidationErrors(errors)
         spot = {
@@ -88,7 +96,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
             </label>
             <label>
-                <p className="errors">{validationErrors.address}</p>
+            {validationErrors.address?<p className="errors">{validationErrors.address}</p>:''}
                 Street Address
                 <input
                     type='text'
@@ -98,7 +106,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 City
-                <p className="errors">{validationErrors.city}</p>
+                {validationErrors.city?<p className="errors">{validationErrors.city}</p>:''}
                 <input
                     type='text'
                     value={city}
@@ -107,63 +115,53 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 State
-                <p className="errors">{validationErrors.state}</p>
+                {validationErrors.state?<p className="errors">{validationErrors.state}</p>:''}
                 <input
                     type='text'
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                 />
             </label>
-            <label>
-                Latitude
-                <input
-                    type='text'
-                    value={lat}
-                    onChange={(e) => setLat(e.target.value)}
-                />
-            </label>
-            <label>
-                Longitude
-                <input
-                    type='text'
-                    value={lng}
-                    onChange={(e) => setLng(e.target.value)}
-                />
-            </label>
+            <hr/>
             <label>
                 Describe your place to guests
-                <p className="errors">{validationErrors.description}</p>
+                {validationErrors.description?<p className="errors">{validationErrors.description}</p>:''}
                 <input
                     type='text'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
+            <hr/>
             <label>
                 Create a title for your spot
-                <p className="errors">{validationErrors.name}</p>
+                {validationErrors.name?<p className="errors">{validationErrors.name}</p>:''}
                 <input
                     type='text'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
             </label>
+            <hr/>
             <label>
                 Set a base price for your spot
-                <p className="errors">{validationErrors.price}</p>
+                {validationErrors.price?<p className="errors">{validationErrors.price}</p>:''}
                 <input
                     type='text'
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                 />
             </label>
+            <hr/>
             <label>
                 Liven up your spot with photos
+                {validationErrors.url1?<p className="errors">{validationErrors.url1}</p>:''}
                 <input
                     type='text'
                     value={url1}
                     onChange={(e) => seturl1(e.target.value)}
                 />
+                {validationErrors.url2?<p className="errors">{validationErrors.url2}</p>:''}
                 <input
                     type='text'
                     value={url2}
@@ -185,7 +183,7 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => seturl5(e.target.value)}
                 />
             </label>
-
+            <hr/>
             <button type='submit'>{formType}</button>
         </form>
     )

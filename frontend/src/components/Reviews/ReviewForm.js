@@ -58,7 +58,7 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
                 Star Rating
                  
             </label> */}
-            <button type='submit'>{formType}</button>
+            <button type='submit'>Submit Your {formType}</button>
         </form>
     )
 }

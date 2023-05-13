@@ -36,7 +36,7 @@ const ManageSpots = () => {
           >
             Edit
           </Link></button>
-                        <OpenModalButton buttonText={'Delete Review'}
+                        <OpenModalButton buttonText={'Delete Spot'}
                         modalComponent={
                         <DeleteSpot
                             spot={spot}
