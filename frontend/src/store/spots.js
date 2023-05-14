@@ -179,6 +179,7 @@ const spotsReducer = (state = initialState, action) => {
             }
             delete newState.allSpots[action.spotId]
             delete newState.currentSpot[action.spotId]
+            console.log('hit console log')
             return newState
         }
         case GET_USER_SPOT: {

@@ -12,13 +12,13 @@ const SingleSpot = () => {
 
     const loggedInUser = useSelector((state) =>
         state.session.user)
-
     useEffect(() => {
         dispatch(getSpotById(spotId))
     }, [dispatch, spotId])
     const alertClick = () => {
         alert('Feature Coming Soon')
     }
+    
     // if(!review) return null
     if (!spot) {
         return null
@@ -70,7 +70,7 @@ const SingleSpot = () => {
                 {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
                 {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
                 {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
-                {spot?.Owner?.id !== loggedInUser?.id ? (<CreateReviewForm spotId={spotId} />) : ""}
+                {spot?.Owner?.id !== loggedInUser?.id ?(<CreateReviewForm spotId={spotId} />)  :"" }
                 {spot.numReviews === 0 && spot?.Owner.id !== loggedInUser?.id ? (<p>Be the first to post a review!</p>) : ''}
                 {/* {spot.numReviews === 1 ? (<p>Be the first to post a review!</p>) : ''} */}
 

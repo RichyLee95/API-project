@@ -4,10 +4,13 @@ import { useDispatch } from 'react-redux';
 import { createReview } from '../../store/reviews';
 import { getSpotById } from '../../store/spots';
 import StarsRatingInput from './ReviewRating';
+import { useModal } from '../../context/Modal';
+
 
 const ReviewForm = ({ reviews, formType, spotId }) => {
     const [validationErrors, setValidationErrors] = useState({})
     const history = useHistory()
+    const {closeModal} = useModal()
     const [review, setReview] = useState('')
     const [stars, setStars] = useState('')
     const dispatch = useDispatch()
@@ -24,6 +27,7 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
         if (formType === 'Create Review') {
            await dispatch(createReview(reviews,spotId))
            dispatch(getSpotById(spotId))
+           .then(closeModal)
            if (reviews.validationErrors) {
             return setValidationErrors(reviews.validationErrors)
         }

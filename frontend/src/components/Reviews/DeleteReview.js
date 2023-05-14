@@ -3,14 +3,16 @@ import { useDispatch } from 'react-redux';
 import { deleteReview } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
+import { getSingleSpot, getSpotById } from '../../store/spots';
 
-const DeleteReview = ({ review }) => {
+const DeleteReview = ({ review,spotId }) => {
     const {closeModal} = useModal()
     const history = useHistory()
     const dispatch = useDispatch()
-    const handleDelete = (e) => {
+    const handleDelete =async (e) => {
         e.preventDefault()
-        dispatch(deleteReview(review.id))
+       await dispatch(deleteReview(review.id))
+        dispatch(getSpotById(spotId))
         .then(closeModal)
     }
 

@@ -13,16 +13,13 @@ function LoginFormModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let validationErrors ={}
-    if(!credential) errors.credential='user or email is required'
-    if(!password) errors.password='password is required'
-    setErrors(validationErrors);
+    setErrors({});
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
-          setErrors(data.validationErrors);
+          setErrors(data.errors);
         }
       });
   };
@@ -32,7 +29,6 @@ function LoginFormModal() {
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
-        {errors.credential?<p className="errors">{errors.credential}</p>:''}
           Username or Email
           <input
             type="text"
@@ -42,7 +38,6 @@ function LoginFormModal() {
           />
         </label>
         <label>
-        {errors.password?<p className="errors">{errors.password}</p>:''}
           Password
           <input
             type="password"
@@ -54,7 +49,7 @@ function LoginFormModal() {
         {errors.credential && (
           <p>{errors.credential}</p>
         )}
-        <button type="submit">Log In</button>
+        <button disabled={credential.length < 4 || password.length < 6} type="submit">Log In</button>
       </form>
     </>
   );

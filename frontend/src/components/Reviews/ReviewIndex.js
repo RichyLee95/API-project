@@ -31,11 +31,11 @@ const ReviewIndex = ({ spotId }) => {
                     {loggedInUser?.id === review.userId &&
                         <OpenModalButton buttonText={'Delete Review'}
                             modalComponent={
-                                <DeleteReview review={review} />
+                                <DeleteReview review={review} spotId={spotId} />
                             }
                         /> }
-                    {/* {console.log('USER ID', loggedInUser.id)}
-                    {console.log('REVIEW ID', reviewsObj.userId)} */}
+                    {/* {console.log('USER ID', loggedInUser.id)} */}
+                    {console.log('REVIEW ID', reviewsObj)}
                 </div>
             ))}
 
