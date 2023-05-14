@@ -16,7 +16,9 @@ const SingleSpot = () => {
     useEffect(() => {
         dispatch(getSpotById(spotId))
     }, [dispatch, spotId])
-
+    const alertClick = () => {
+        alert('Feature Coming Soon')
+    }
     // if(!review) return null
     if (!spot) {
         return null
@@ -35,7 +37,7 @@ const SingleSpot = () => {
             <div className='singleSpotdetail'>
                 <h2>{spot.name}</h2>
                 <h3>{spot.city},{spot.state},{spot.country}</h3>
-                </div>
+            </div>
             <div className='singleSpotImgs'>
                 {/* {console.log('SINGLESPOT', spot)} */}
                 <div className='images'>
@@ -45,22 +47,22 @@ const SingleSpot = () => {
                     ))}
                 </div>
             </div>
-            
+
             <div className='spot desc'>
-            <h3>Hosted By {spot.Owner?.firstName}{spot.Owner?.lastName}</h3>
+                <h3>Hosted By {spot.Owner?.firstName}{spot.Owner?.lastName}</h3>
             </div>
-            
+
             <div className=''>{spot.description}</div>
 
             <div className='reservebox'>
                 ${spot.price}night
                 <h4>
-                {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
-                {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
-                {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
+                    {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
+                    {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
+                    {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
                 </h4>
-                <button className='reserve-btn'>Reserve</button>
-                </div>
+                <button className='reserve-btn' onClick={alertClick}>Reserve</button>
+            </div>
 
             <div>
                 {/* Reviews */}

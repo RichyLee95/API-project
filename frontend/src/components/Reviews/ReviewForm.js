@@ -43,7 +43,7 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                 />   
-                Star Rating
+                
                 <div>
                 <StarsRatingInput
                      stars={stars}
@@ -52,13 +52,13 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
                     onChange={onChange}
                 />
                 </div>
-                
+               Star Rating 
             </label>
             {/* <label>
                 Star Rating
                  
             </label> */}
-            <button type='submit'>Submit Your {formType}</button>
+            <button type='submit'>Submit Your Review</button>
         </form>
     )
 }
