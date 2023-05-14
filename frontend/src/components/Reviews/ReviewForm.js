@@ -12,7 +12,7 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
     const history = useHistory()
     const {closeModal} = useModal()
     const [review, setReview] = useState('')
-    const [stars, setStars] = useState('')
+    const [stars, setStars] = useState(0)
     const dispatch = useDispatch()
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -62,7 +62,8 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
                 Star Rating
                  
             </label> */}
-            <button type='submit'>Submit Your Review</button>
+            {console.log('stars', {stars})}
+            <button disabled={review.length < 10 || stars <= 0} type='submit'>Submit Your Review</button>
         </form>
     )
 }

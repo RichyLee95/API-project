@@ -82,7 +82,7 @@ const SpotForm = ({ spot, formType }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h1>{formType}</h1>
+            <h1>Create a new Spot</h1>
             <h2>Where's your place located?</h2>
 
             <p>Guests will only get your exact address once they booked a reservation.</p>
@@ -124,7 +124,10 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <hr/>
             <label>
-                Describe your place to guests
+
+                <h4>Describe your place to guests</h4>
+                <p>Mention the best features of your space, any special amentities like
+fast wif or parking, and what you love about the neighborhood.</p>
                 {validationErrors.description?<p className="errors">{validationErrors.description}</p>:''}
                 <input
                     type='text'
@@ -134,7 +137,9 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <hr/>
             <label>
-                Create a title for your spot
+                <h4>Create a title for your spot</h4>
+                <p>Catch guests' attention with a spot title that highlights what makes
+your place special.</p>
                 {validationErrors.name?<p className="errors">{validationErrors.name}</p>:''}
                 <input
                     type='text'
@@ -144,7 +149,9 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <hr/>
             <label>
-                Set a base price for your spot
+                <h4>Set a base price for your spot</h4>
+                <p>Competitive pricing can help your listing stand out and rank higher
+in search results.</p>
                 {validationErrors.price?<p className="errors">{validationErrors.price}</p>:''}
                 <input
                     type='text'
@@ -154,7 +161,8 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <hr/>
             <label>
-                Liven up your spot with photos
+                <h4>Liven up your spot with photos</h4>
+                <p>Submit a link to at least one photo to publish your spot.</p>
                 {validationErrors.url1?<p className="errors">{validationErrors.url1}</p>:''}
                 <input
                     type='text'

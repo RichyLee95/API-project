@@ -92,6 +92,114 @@ module.exports = {
         description: "Located in Phuket, Thailand, Tiger Muay Thai is home to the top MMA Muay Thai gym in Thailand including fighters such as Petr Yan and Alexander Volkanovski",
         price: 250
       },
+      {
+        ownerId: 9,
+address: "1234 Ventura Blvd",
+city: "Los Angeles",
+state: "California",
+country: "United States",
+lat: 34.1526,
+lng: -118.4953,
+name: "Cobra Kai",
+description: "A martial arts dojo in Reseda, California that teaches the Cobra Kai style of karate.",
+price: 100
+      },
+      {
+        ownerId: 7,
+address: "123 Main St",
+city: "Sherman Oaks",
+state: "California",
+country: "United States",
+lat: 34.1482,
+lng: -118.4516,
+name: "Miyagi-Do Karate",
+description: "A martial arts dojo founded by Mr. Miyagi and now led by Daniel LaRusso.",
+price: 100
+      },
+      {
+        ownerId: 7,
+address: "4900 N 31st St",
+city: "Arlington",
+state: "Virginia",
+country: "United States",
+lat: 38.8815,
+lng: -77.0731,
+name: "Evolve Academy",
+description: "A top MMA gym on the East Coast, known for its high-quality instruction and state-of-the-art facilities.",
+price: 190
+      },
+      {
+        ownerId: 5,
+address: "1477 La Mirada Dr",
+city: "San Marcos",
+state: "California",
+country: "United States",
+lat: 33.1426,
+lng: -117.1843,
+name: "The Arena",
+description: "A well-respected MMA gym with a focus on Muay Thai and kickboxing, led by former UFC fighter and coach, Dan Henderson.",
+price: 220
+      },
+      {
+        ownerId: 5,
+address: "3047 E Indian School Rd",
+city: "Phoenix",
+state: "Arizona",
+country: "United States",
+lat: 33.4956,
+lng: -111.9834,
+name: "The MMA Lab",
+description: "A world-class MMA gym with a friendly atmosphere and top-level coaching staff.",
+price: 180
+      },
+      {
+        ownerId: 4,
+address: "789 Oak St",
+city: "Tokyo",
+state: null,
+country: "Japan",
+lat: 35.6895,
+lng: 139.6917,
+name: "Krazy Bee",
+description: "A popular MMA gym in Japan, known for its strong wrestling and grappling training.",
+price: 130
+      },
+      {
+        ownerId: 4,
+address: "4100 SW 160th Ave #17",
+city: "Miramar",
+state: "Florida",
+country: "United States",
+lat: 25.9773,
+lng: -80.3553,
+name: "American Top Team",
+description: "A premier MMA gym with multiple locations and a long history of producing champions.",
+price: 200
+      },
+      {
+        ownerId: 3,
+        address: "874 East Phillidelphia",
+        city: "Chicago",
+        state: "Illinois",
+        country: "United States",
+        lat: 7.846478,
+        lng: 98.340689,
+        name: "My Friends Backyard",
+        description: "A nice spot where my friends and I all train at, the best location in the world!",
+        price: 10
+      },
+      {
+        ownerId: 7,
+address: "4900 N 31st St",
+city: "Arlington",
+state: "Virginia",
+country: "United States",
+lat: 38.8815,
+lng: -77.0731,
+name: "Evolve Academy",
+description: "A top MMA gym on the East Coast, known for its high-quality instruction and state-of-the-art facilities.",
+price: 190
+      }
     ], {});
   },
 
