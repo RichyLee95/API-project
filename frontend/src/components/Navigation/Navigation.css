@@ -1,1 +1,26 @@
 .hidden{display:none}
+/* .profilebtn{
+    display:flex;
+    align-items: end;
+} */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .Logobox {
+    display: flex;
+    align-items: center;
+  }
+  .newspot{
+    margin-right: 10px;
+    margin-left: auto;
+    /* justify-content: ; */
+  }
+  /* .profilebtn {
+    position: absolute;
+    top: 100%;
+    right: 0; */
+    .logo{
+        width:60px;
+    }

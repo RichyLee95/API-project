@@ -43,6 +43,7 @@ export const fetchSpots = () => async (dispatch) => {
     }
 };
 export const createSpot = (spot) => async (dispatch) => {
+    let newSpot
     try{
     const res = await csrfFetch('/api/spots', {
         method: 'POST',
@@ -50,15 +51,15 @@ export const createSpot = (spot) => async (dispatch) => {
         body: JSON.stringify(spot)
     })
     // if (res.ok) {
-        const newSpot = await res.json()
+        newSpot = await res.json()
         dispatch(editSpot(newSpot))
         for(const image of spot.SpotImages){
-       await dispatch (createImage(newSpot.id, image))
+      await dispatch (createImage(newSpot.id, image))
         }}catch (errors){
             const data=await errors.json()
             return data
         }
-        // return newSpot
+        return newSpot
     // } else {
     //     const errors = await res.json()
     //     return errors

@@ -15,7 +15,7 @@ const ReviewIndex = ({ spotId }) => {
         dispatch(getReviews(spotId))
     }, [dispatch, spotId])
 
-
+// const reviewDate = review.createdAt
     //     const userInfo=useSelector(state=>state.session.user)
     console.log('review user info', reviewsObj)
     // console.log('this is reviews array',reviewArray)

@@ -10,6 +10,12 @@ const SingleSpot = () => {
         state.spots.allSpots[spotId])
     const dispatch = useDispatch()
 
+    const reviewsObj =
+        useSelector((state) => (state.reviews.allReviews))
+    const reviewArray = Object.values(reviewsObj)
+    // const reviewcheck = reviewArray.find(User.id)? true: false
+        
+    
     const loggedInUser = useSelector((state) =>
         state.session.user)
     useEffect(() => {
@@ -25,7 +31,8 @@ const SingleSpot = () => {
     }
     if (!spot.SpotImages) return null
     return (
-        <>
+    <>
+    {console.log('REVIEWINFO',reviewArray)}
             {loggedInUser ? (
                 <Link
                     className="Create Spot"
@@ -74,7 +81,7 @@ const SingleSpot = () => {
                 {spot.numReviews === 0 && spot?.Owner.id !== loggedInUser?.id ? (<p>Be the first to post a review!</p>) : ''}
                 {/* {spot.numReviews === 1 ? (<p>Be the first to post a review!</p>) : ''} */}
 
-
+                            
 
                 {/* <CreateReviewForm spotId={spotId} /> */}
 

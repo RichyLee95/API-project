@@ -18,6 +18,7 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
         e.preventDefault()
         let errors = {}
         if(!review) errors.review='Review input is required'
+        
         setValidationErrors(errors)
         reviews = {
             ...reviews,
@@ -41,8 +42,9 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
         <form onSubmit={handleSubmit}>
             <label>
             {validationErrors.review?<p className="errors">{validationErrors.review}</p>:''}
-                Review Desc
+            How was your stay?
                 <input
+                placeholder='Leave your review here...'
                     type='text'
                     value={review}
                     onChange={(e) => setReview(e.target.value)}

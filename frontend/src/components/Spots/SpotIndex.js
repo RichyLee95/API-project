@@ -7,18 +7,24 @@ import './SpotIndex.css'
 const SpotIndex = ({ spotId }) => {
     const spotsObj =
         useSelector((state) => (state.spots.allSpots))
+
     const spotsArray = Object.values(spotsObj)
     const dispatch = useDispatch()
+
+    const singleSpot = useSelector((state) =>
+        state.spots.allSpots[spotId])
+
     const loggedInUser = useSelector((state) =>
         state.session.user)
+
     useEffect(() => {
         dispatch(fetchSpots(spotId))
     }, [dispatch, spotId])
-    console.log('SPOTINDEX ID', spotId)
+    
     return (
         <section>
             <div>
-                <div className='header'>
+                {/* <div className='header'>
                     <div className='Logobox'>
                         <img className='logo' src='https://static.vecteezy.com/system/resources/previews/022/091/985/original/martial-arts-logo-design-icon-illustration-free-vector.jpg'></img>
                         <h2>Fightbnb</h2>
@@ -33,7 +39,7 @@ const SpotIndex = ({ spotId }) => {
                             </Link>
                         ) : ""}
                     </div>
-                </div>
+                </div> */}
                 <div className='spotcontainer'>
 
 
@@ -47,6 +53,11 @@ const SpotIndex = ({ spotId }) => {
                         <div className='spot1'>
                             {spot.city},
                             {spot.state},
+                            <h2>
+                            {spot.avgRating === 0 ? (<h3><i className="fa fa-star" />New</h3>) : ''}
+                    {spot.avgRating > 0 ? (<h3><i className="fa fa-star" />{spot.avgRating.toFixed(2)}</h3>) : ''}
+                            </h2>
+                            {console.log('SPOTINDEX ID', singleSpot)}
                             ${spot.price}night
                             </div>
                             <div className='spot2'>

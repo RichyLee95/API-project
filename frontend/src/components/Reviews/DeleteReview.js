@@ -4,7 +4,7 @@ import { deleteReview } from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { getSingleSpot, getSpotById } from '../../store/spots';
-
+import './DeleteReview.css'
 const DeleteReview = ({ review,spotId }) => {
     const {closeModal} = useModal()
     const history = useHistory()
@@ -20,8 +20,8 @@ const DeleteReview = ({ review,spotId }) => {
         <div>
             <h1>Confirm Delete</h1>
             <h3>Are you sure you want to delete this review?</h3>
-            <button onClick={handleDelete}>Delete Review</button>
-            <button onClick={closeModal}>No</button>
+            <button className='btn-yes' onClick={handleDelete}>Delete Review</button>
+            <button className='btn-no' onClick={closeModal}>No</button>
         </div>
     )
 }

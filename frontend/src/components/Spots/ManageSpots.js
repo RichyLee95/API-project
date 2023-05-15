@@ -26,7 +26,7 @@ const ManageSpots = () => {
             >
                 Create a New Spot
             </Link>
-            <h1>Manage Your Spots</h1>
+            <h1>Manage Spots</h1>
             <ul>
                 {spots.length > 0 && spots.map((spot) => (
                     <div key={spot.id}>

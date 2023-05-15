@@ -10,8 +10,8 @@ const CreateSpotForm = () => {
         lng:'',
         description:'',
         price:'',
-        name:''
-
+        name:'',
+        preview:'',
 
     }
     return (
