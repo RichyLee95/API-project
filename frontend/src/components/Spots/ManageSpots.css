@@ -1,0 +1,35 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .managespots {
+    margin-bottom: 20px;
+  }
+
+  .mainspotcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .imgspot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+  }
+  .img1 {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  .star-review {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }

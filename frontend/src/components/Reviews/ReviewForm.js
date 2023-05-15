@@ -5,7 +5,7 @@ import { createReview } from '../../store/reviews';
 import { getSpotById } from '../../store/spots';
 import StarsRatingInput from './ReviewRating';
 import { useModal } from '../../context/Modal';
-
+import './ReviewForm.css'
 
 const ReviewForm = ({ reviews, formType, spotId }) => {
     const [validationErrors, setValidationErrors] = useState({})
@@ -39,19 +39,21 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
         setStars(parseInt(number));
       };
     return (
-        <div>
+        <div className='reviewform'>
         <form onSubmit={handleSubmit}>
-            <label>
+            <div>
             {validationErrors.review?<p className="errors">{validationErrors.review}</p>:''}
+            <div className='greeting'>
             <h2>How was your stay?</h2>
-                <input
+            </div>
+                <input className='reviewinput'
                 placeholder='Leave your review here...'
                     type='text'
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                 />   
                 
-                <div>
+                <div className='starreview'>
                 <StarsRatingInput
                      stars={stars}
                     //  disabled={false}
@@ -60,13 +62,13 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
                 />
                 </div>
                Star Rating 
-            </label>
+            </div>
             {/* <label>
                 Star Rating
                  
             </label> */}
             {console.log('stars', {stars})}
-            <button disabled={review.length < 10 || stars <= 0} type='submit'>Submit Your Review</button>
+            <button className='reviewsubmit' disabled={review.length < 10 || stars <= 0} type='submit'>Submit Your Review</button>
         </form>
         </div>
     )

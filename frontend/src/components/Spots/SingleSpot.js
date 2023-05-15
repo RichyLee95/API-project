@@ -25,7 +25,7 @@ const SingleSpot = () => {
     const alertClick = () => {
         alert('Feature Coming Soon')
     }
-
+   
     // if(!review) return null
     if (!spot) {
         return null
@@ -33,8 +33,8 @@ const SingleSpot = () => {
     if (!spot.SpotImages) return null
     let smallImg = spot.SpotImages.slice(1, 5)
     // let prevImg = spot.SpotImages.find(() => )
-    let usersReview = reviewArray.find((review) => loggedInUser.id === review.userId)
-    console.log('USERREVIEW', usersReview)
+    // let usersReview = reviewArray.find((review) => loggedInUser.id === review.userId)
+    // console.log('USERREVIEW', usersReview)
 
     const previewImage = spot.SpotImages.find((image) => image.preview===true)
     return (
@@ -42,7 +42,9 @@ const SingleSpot = () => {
         <div className='main-div'>
             {/* {console.log('REVIEWINFO',usersReview)} */}
             <div className='singleSpotdetail'>
+                
               <div className='spotname'>  <h2>{spot.name}</h2></div>
+              
               <div className='citystate'> <h3>{spot.city},{spot.state},{spot.country}</h3></div> 
             </div>
 <div className='img-box'>
@@ -68,14 +70,21 @@ const SingleSpot = () => {
             <div className=''>{spot.description}</div>
 
             <div className='reservebox'>
+                <div className='price'>
                 ${spot.price}night
+                </div>
+                <div className='starbox'>
                 <h4>
-                    {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
-                    {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
-                    {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
+                    {spot.numReviews === 0 ? (<h3><i className="fa fa-star" />New</h3>) : ''}
+                    {spot.numReviews === 1 ? (<h3><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h3>) : ''}
+                    {spot.numReviews > 1 ? (<h3><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h3>) : ''}
                 </h4>
+                </div>
+                <div className='reserve-btn-box'>
                 <button className='reserve-btn' onClick={alertClick}>Reserve</button>
+                </div>
             </div>
+
 
             <div>
                 {/* Reviews */}
@@ -83,9 +92,9 @@ const SingleSpot = () => {
                     {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
                     {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
                     {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
-                    {spot?.Owner?.id !== loggedInUser?.id && loggedInUser && usersReview?.User?.id !== loggedInUser?.id ? (<CreateReviewForm spotId={spotId} />) : ""}
+                    {spot?.Owner?.id !== loggedInUser?.id && loggedInUser ? (<CreateReviewForm spotId={spotId} />) : ""}
                     {spot.numReviews === 0 && spot?.Owner.id !== loggedInUser?.id ? (<p>Be the first to post a review!</p>) : ''}
-                    {console.log('REVIEWINFO', usersReview)}
+                    
                     {/* {spot.numReviews === 1 ? (<p>Be the first to post a review!</p>) : ''} */}
                 </div>
 

@@ -39,31 +39,31 @@ return (
     <h1 classname='login'>Log In</h1>
     </div>
     <form onSubmit={handleSubmit}>
-      <label>
-        Username or Email
-        <input
+      <div className="login-user">
+        <input className="login-input"
           placeholder='Username or Email'
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Password
-        <input
+      </div>
+      <div className="password">
+        <input className="password-input"
           placeholder='Password'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
+      </div>
       {errors.credential && (
         <p>{errors.credential}</p>
       )}
-      <button disabled={credential.length < 4 || password.length < 6} type="submit">Log In</button>
+      <button className="login-btn" disabled={credential.length < 4 || password.length < 6} type="submit">Log In</button>
+      <div className="demodiv">
       <button className="demouser" onClick={(demoUser)}>Demo User</button>
+    </div>
     </form>
 </div>
   </>
