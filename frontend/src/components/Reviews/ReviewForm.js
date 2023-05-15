@@ -39,10 +39,11 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
         setStars(parseInt(number));
       };
     return (
+        <div>
         <form onSubmit={handleSubmit}>
             <label>
             {validationErrors.review?<p className="errors">{validationErrors.review}</p>:''}
-            How was your stay?
+            <h2>How was your stay?</h2>
                 <input
                 placeholder='Leave your review here...'
                     type='text'
@@ -67,6 +68,7 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
             {console.log('stars', {stars})}
             <button disabled={review.length < 10 || stars <= 0} type='submit'>Submit Your Review</button>
         </form>
+        </div>
     )
 }
 export default ReviewForm

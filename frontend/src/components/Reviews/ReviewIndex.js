@@ -37,7 +37,7 @@ new Date (b.createdAt) - new Date(a.createdAt)
             {/* {reviewArray.map((review) => ( */}
                 {sortedreview.map((review) => (
                 <div key={review.id}>
-                    <p>Posted by:{review.User.firstName}</p>
+                    <p>Posted by:{review?.User?.firstName}</p>
                     <p>Created at:{new Date(review.createdAt).toLocaleDateString('default',
                    {month:'long',year:'numeric'} )}</p>
                     <p>Review description:{review.review}</p>

@@ -1,0 +1,36 @@
+.img-box{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+max-width: 100%;
+justify-content: center;
+}
+
+.prevImgcontainer{
+    flex-grow: 10;
+    margin-right: 20px;
+    width:65px;
+    height:50px;
+    border-color: black;
+}
+.prevImg{
+    max-width: 100%;
+}
+.smallImg{
+height:100px;
+width:120px;
+border-color: black;
+
+}
+.fourpic{
+height:auto;
+width:100%;
+}
+.subimages{
+height:30px;
+width:30px;
+}
+.reservebox{
+    height:40px;
+    width:80px;
+}
