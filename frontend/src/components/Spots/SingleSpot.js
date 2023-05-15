@@ -39,10 +39,11 @@ const SingleSpot = () => {
     const previewImage = spot.SpotImages.find((image) => image.preview===true)
     return (
         <>
+        <div className='main-div'>
             {/* {console.log('REVIEWINFO',usersReview)} */}
             <div className='singleSpotdetail'>
-                <h2>{spot.name}</h2>
-                <h3>{spot.city},{spot.state},{spot.country}</h3>
+              <div className='spotname'>  <h2>{spot.name}</h2></div>
+              <div className='citystate'> <h3>{spot.city},{spot.state},{spot.country}</h3></div> 
             </div>
 <div className='img-box'>
             <div className='prevImgcontainer'>
@@ -91,6 +92,7 @@ const SingleSpot = () => {
                 {/* <CreateReviewForm spotId={spotId} /> */}
 
                 <ReviewIndex spotId={spotId} />
+            </div>
             </div>
         </>
     )

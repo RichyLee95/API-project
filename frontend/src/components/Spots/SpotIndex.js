@@ -23,7 +23,7 @@ const SpotIndex = ({ spotId }) => {
     
     return (
         <section>
-            <div>
+            
                 {/* <div className='header'>
                     <div className='Logobox'>
                         <img className='logo' src='https://static.vecteezy.com/system/resources/previews/022/091/985/original/martial-arts-logo-design-icon-illustration-free-vector.jpg'></img>
@@ -40,6 +40,7 @@ const SpotIndex = ({ spotId }) => {
                         ) : ""}
                     </div>
                 </div> */}
+                <div className='main'>
                 <div className='spotcontainer'>
 
 
@@ -47,9 +48,10 @@ const SpotIndex = ({ spotId }) => {
                     {spotsArray.map((spot) => (
 
                         <div className='spot' key={spot.id}>
-                            <Link to={`/spots/${spot.id}`}>{spot.name}</Link>
+                            <Link to={`/spots/${spot.id}`}>{spot.name}
                             {/* {spot.previewImage} */}
                             <img className='img1' src={spot.previewImage} />
+                            </Link>
                         <div className='spot1'>
                             {spot.city},
                             {spot.state},
