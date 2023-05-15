@@ -9,8 +9,8 @@ function Navigation({ isLoaded }){
   return (
     <div className='header'>
         <div className='Logobox'>
-          <img className='logo' src='https://static.vecteezy.com/system/resources/previews/022/091/985/original/martial-arts-logo-design-icon-illustration-free-vector.jpg'></img>
-          <h2 className='logotext'>Fightbnb</h2>
+        <NavLink exact to="/"><img className="logo" src="https://static.vecteezy.com/system/resources/previews/022/091/985/original/martial-arts-logo-design-icon-illustration-free-vector.jpg" /></NavLink>
+         <NavLink exact to='/'><h2 className='logotext'>Fightbnb</h2></NavLink> 
         </div>
         <div className='newspot'>
           {sessionUser ? (
@@ -24,7 +24,7 @@ function Navigation({ isLoaded }){
         </div>
     <div>
       <div>
-        <NavLink exact to="/">Home</NavLink>
+
       </div>
       {isLoaded && (
         <div>

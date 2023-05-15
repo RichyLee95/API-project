@@ -5,6 +5,7 @@ export const GET_SINGLE_REVIEW = 'spots/GET_SINGLE_REVIEW'
 export const UPDATE_REVIEW = 'spots/UPDATE_REVIEW'
 export const REMOVE_REVIEW = 'spots/REMOVE_REVIEW'
 export const GET_USER_REVIEW = 'spots/GET_USER_REVIEW'
+export const CLEAR_REVIEWS = 'spots/CLEAR_REVIEWS'
 /**  Action Creators: */
 
 export const getAllReviews = (reviews) => ({
@@ -28,6 +29,9 @@ export const removeReview = (reviewId) => ({
 export const currentUserReview = (review) => ({
     type: GET_USER_REVIEW,
     review,
+})
+export const clearReviews = () => ({
+    type:CLEAR_REVIEWS
 })
 
 /** Thunk Action Creators: */
@@ -131,6 +135,15 @@ const reviewsReducer = (state = initialState, action) => {
             delete newState.currentReview[action.reviewId]
             return newState
         }
+        case CLEAR_REVIEWS:{
+            const newState = {
+                ...state, 
+                allReviews:{ },
+                currentReview:{}
+            }
+            return newState
+        }
+        
         // case GET_SINGLE_REVIEW:{
         //     return {...state,
         //         allReviews:{

@@ -13,8 +13,8 @@ const SingleSpot = () => {
     const reviewsObj =
         useSelector((state) => (state.reviews.allReviews))
     const reviewArray = Object.values(reviewsObj)
-    // const reviewcheck = reviewArray.find(User.id)? true: false
-        
+    // const reviewcheck = reviewArray.find(id)
+        // console.log('REVIEW ARRAY', reviewcheck)
     
     const loggedInUser = useSelector((state) =>
         state.session.user)
@@ -30,9 +30,14 @@ const SingleSpot = () => {
         return null
     }
     if (!spot.SpotImages) return null
+
+    let usersReview = reviewArray.find(review => loggedInUser.id === review.userId)
+
+
+
     return (
     <>
-    {console.log('REVIEWINFO',reviewArray)}
+    {/* {console.log('REVIEWINFO',usersReview)} */}
             {loggedInUser ? (
                 <Link
                     className="Create Spot"
@@ -77,10 +82,10 @@ const SingleSpot = () => {
                 {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
                 {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
                 {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
-                {spot?.Owner?.id !== loggedInUser?.id && loggedInUser ?(<CreateReviewForm spotId={spotId} />)  :"" }
+                {spot?.Owner?.id !== loggedInUser?.id && loggedInUser && usersReview !== loggedInUser.id ?(<CreateReviewForm spotId={spotId} />)  :"" }
                 {spot.numReviews === 0 && spot?.Owner.id !== loggedInUser?.id ? (<p>Be the first to post a review!</p>) : ''}
+                {console.log('REVIEWINFO',usersReview)}
                 {/* {spot.numReviews === 1 ? (<p>Be the first to post a review!</p>) : ''} */}
-
                             
 
                 {/* <CreateReviewForm spotId={spotId} /> */}
