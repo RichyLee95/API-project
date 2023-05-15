@@ -162,36 +162,8 @@ module.exports = {
         spotId: 7,
         url: 'https://www.fullmetaldojo.com/wp-content/uploads/2021/01/Places-To-Bang-Tiger-Muay-Thai-Ft.png',
         preview: false
-      },
-      {
-        spotId: 8,
-        url: 'https://www.tigermuaythaibeachside.com/wp-core/wp-content/uploads/2019/08/tmt-beachside-front-green-min.jpg',
-        preview: true
-       },
-       {
-         spotId: 8,
-         url: 'https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_863/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/mrwvg7xluo3yoras0i2s/MuayThai(ThaiBoxing)TrainingbyTigerMuayThaiChiangMai.webp',
-         preview: false
-       },
-       {
-         spotId: 8,
-         url: 'https://www.tigermuaythai.com/wp-core/wp-content/uploads/2022/04/tmt-mua-thai-class-04-12-22-01.jpg',
-         preview: false
-       },
-       {
-         spotId: 8,
-         url: 'https://www.tigermuaythai.com/wp-core/wp-content/uploads/2016/03/top-img-class-muay-thai-inter-01-360x203.jpg',
-         preview: false
-       },
-       {
-        spotId: 8,
-        url: 'https://www.fullmetaldojo.com/wp-content/uploads/2021/01/Places-To-Bang-Tiger-Muay-Thai-Ft.png',
-        preview: false
-      },
+      }
       
-       
-      
-
     ], {});
   },
 
