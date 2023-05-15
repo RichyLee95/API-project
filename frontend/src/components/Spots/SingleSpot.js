@@ -34,7 +34,7 @@ const SingleSpot = () => {
     let smallImg = spot.SpotImages.slice(1, 5)
     // let prevImg = spot.SpotImages.find(() => )
     let usersReview = reviewArray.find((review) => loggedInUser.id === review.userId)
-
+    console.log('USERREVIEW', usersReview)
 
     const previewImage = spot.SpotImages.find((image) => image.preview===true)
     return (
@@ -83,7 +83,7 @@ const SingleSpot = () => {
                     {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
                     {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
                     {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
-                    {spot?.Owner?.id !== loggedInUser?.id && loggedInUser && usersReview !== loggedInUser.id ? (<CreateReviewForm spotId={spotId} />) : ""}
+                    {spot?.Owner?.id !== loggedInUser?.id && loggedInUser && usersReview?.User?.id !== loggedInUser?.id ? (<CreateReviewForm spotId={spotId} />) : ""}
                     {spot.numReviews === 0 && spot?.Owner.id !== loggedInUser?.id ? (<p>Be the first to post a review!</p>) : ''}
                     {console.log('REVIEWINFO', usersReview)}
                     {/* {spot.numReviews === 1 ? (<p>Be the first to post a review!</p>) : ''} */}

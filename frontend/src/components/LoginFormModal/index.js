@@ -34,7 +34,10 @@ const handleSubmit = (e) => {
 
 return (
   <>
-    <h1>Log In</h1>
+  <div className="main">
+    <div classname = 'login'>
+    <h1 classname='login'>Log In</h1>
+    </div>
     <form onSubmit={handleSubmit}>
       <label>
         Username or Email
@@ -62,7 +65,7 @@ return (
       <button disabled={credential.length < 4 || password.length < 6} type="submit">Log In</button>
       <button className="demouser" onClick={(demoUser)}>Demo User</button>
     </form>
-
+</div>
   </>
 );
 }

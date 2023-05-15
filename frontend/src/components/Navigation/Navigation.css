@@ -17,6 +17,13 @@
     margin-left: auto;
     /* justify-content: ; */
   }
+  .newspot {
+    margin-right: 1rem;
+  }
+  
+  .ProfileButton {
+    margin-left: auto;
+  }
   /* .profilebtn {
     position: absolute;
     top: 100%;
