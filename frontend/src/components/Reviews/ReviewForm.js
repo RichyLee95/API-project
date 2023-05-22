@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createReview } from '../../store/reviews';
+import { createReview, getReviews } from '../../store/reviews';
 import { getSpotById } from '../../store/spots';
 import StarsRatingInput from './ReviewRating';
 import { useModal } from '../../context/Modal';
@@ -26,9 +26,12 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
             stars
         }
         if (formType === 'Create Review') {
-           await dispatch(createReview(reviews,spotId))
-           dispatch(getSpotById(spotId))
+            // console.log('formresponse', reviews)
+           const res =await dispatch(createReview(reviews,spotId))
+        //    console.log('formresponse', res)
            .then(closeModal)
+           dispatch(getSpotById(spotId))
+           dispatch(getReviews(spotId))
            if (reviews.validationErrors) {
             return setValidationErrors(reviews.validationErrors)
         }

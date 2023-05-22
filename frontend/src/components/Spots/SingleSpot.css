@@ -34,6 +34,7 @@
 height:100px;
 width:120px;
 border-color: black;
+flex-direction: column;
 
 }
 .fourpic{
@@ -54,6 +55,7 @@ border-color: black;
   padding: 10px;
   border-radius: 5px;
   align-self: flex-end;
+  border: solid;
 }
 .reserve-btn {
     font-size: 1.2rem; 
@@ -64,8 +66,12 @@ border-color: black;
 .review-box {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: end;
     margin-bottom: 20px;
+    justify-content: space-around;
+  }
+  .reservebox-top{
+    justify-content: space-evenly;
   }
   .desc {
     margin-bottom: 20px;

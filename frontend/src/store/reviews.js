@@ -74,7 +74,7 @@ export const createReview = (review,spotId) => async (dispatch) => {
     // if (res.ok){
         const newReview = await res.json()
         dispatch(editReview(newReview))
-        // return newReview
+        return newReview
     // }else{
     //     const errors = await res.json()
     //     return errors

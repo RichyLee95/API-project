@@ -15,7 +15,7 @@ const ManageSpots = () => {
     )
     console.log('this is manage spots', spots)
     const loggedInUser = useSelector((state) =>
-    state.session.user)
+        state.session.user)
     useEffect(() => {
         dispatch(getSpotsByUser())
     }, [dispatch])
@@ -25,32 +25,55 @@ const ManageSpots = () => {
             <div className='page'>
                 <div className='managespots'>
                     <h1>Manage Spots</h1>
+                    <div className='newspot'> 
+                        {spots.length >= 1 ? (
+          ""
+        ) :<Link
+            className="Create Spot"
+            to="/spots/new"
+          >
+            Create a New Spot
+          </Link> }
+                        {console.log('SESSIONUSER', spots)}
+                    </div>
                 </div>
-                
+
                 <div className='mainspotcontainer'>
-                    
+
                     {spots.length > 0 && spots.map((spot) => (
+
                         <div key={spot.id}>
-                            <div className='imgspot'>
-                            <div><Link to={`/spots/${spot.id}`}>{spot.name}</Link><img className='img1' src={spot.previewImage} /></div>
-                            {spot.city},{spot.state}</div>
-                            <div className='manageprice'>
-                            <p>${spot.price}night</p>
-                            </div>
+                            <Link to={`/spots/${spot.id}`}>
+                                <div className='imgspot'>
+                                    <div><img className='img1' src={spot.previewImage} /></div>
+                                    {spot.city},{spot.state}</div>
+                                <div className='starindex'>
+                                    <div className='star-rate'>
+                                        <h2>
+                                            {!spot.avgRating ? (<h3><i className="fa fa-star" />New</h3>) : ''}
+                                            {spot.avgRating > 0 ? (<h3><i className="fa fa-star" />{spot.avgRating.toFixed(2)}</h3>) : ''}
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div className='manageprice'>
+                                    <p>${spot.price}night</p>
+
+                                </div>
+                            </Link>
                             <div className='edit-btn'>
-                            <button className='editbutton'><Link to={`/spots/${spot.id}/edit`}
-                            >
-                                Edit
-                            </Link></button>
+                                <button className='editbutton'><Link to={`/spots/${spot.id}/edit`}
+                                >
+                                    Edit
+                                </Link></button>
                             </div>
                             <div className='delete-btn'>
-                            <OpenModalButton buttonText={'Delete Spot'}
-                                modalComponent={
-                                    <DeleteSpot
-                                        spot={spot}
-                                        key={spot.id} />
-                                }
-                            />
+                                <OpenModalButton buttonText={'Delete Spot'}
+                                    modalComponent={
+                                        <DeleteSpot
+                                            spot={spot}
+                                            key={spot.id} />
+                                    }
+                                />
                             </div>
                         </div>
                     ))}

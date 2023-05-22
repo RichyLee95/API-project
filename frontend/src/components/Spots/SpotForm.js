@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { createSpot, updateSpot } from '../../store/spots';
-
+import './SpotForm.css'
 const SpotForm = ({ spot, formType }) => {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -60,6 +60,7 @@ const SpotForm = ({ spot, formType }) => {
                 { preview: false, url: url5 },
             ]
         }
+        
         if (formType === 'Update Spot') {
             const editedSpot =await dispatch(updateSpot(spot))
             spot = editedSpot
@@ -84,12 +85,17 @@ const SpotForm = ({ spot, formType }) => {
     }
 
     return (
+        <div className='form-container'>
         <form onSubmit={handleSubmit}>
+            <div>
             <h1>Create a new Spot</h1>
+            </div>
+            <div>
             <h2>Where's your place located?</h2>
-
+            
             <p>Guests will only get your exact address once they booked a reservation.</p>
-            <label>
+            </div>
+            <div>
                 {validationErrors.country?<p className="errors">{validationErrors.country}</p>:''}
                 Country
                 <input
@@ -98,8 +104,8 @@ const SpotForm = ({ spot, formType }) => {
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                 />
-            </label>
-            <label>
+            </div>
+            <div>
             {validationErrors.address?<p className="errors">{validationErrors.address}</p>:''}
                 Street Address
                 <input
@@ -108,8 +114,8 @@ const SpotForm = ({ spot, formType }) => {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                 />
-            </label>
-            <label>
+            </div>
+            <div>
                 City
                 {validationErrors.city?<p className="errors">{validationErrors.city}</p>:''}
                 <input
@@ -118,8 +124,8 @@ const SpotForm = ({ spot, formType }) => {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                 />
-            </label>
-            <label>
+            </div>
+            <div>
                 State
                 {validationErrors.state?<p className="errors">{validationErrors.state}</p>:''}
                 <input
@@ -128,10 +134,10 @@ const SpotForm = ({ spot, formType }) => {
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                 />
-            </label>
-            <hr/>
-            <label>
-
+            </div>
+            
+            <div>
+<hr/>
                 <h4>Describe your place to guests</h4>
                 <p>Mention the best features of your space, any special amentities like
 fast wif or parking, and what you love about the neighborhood.</p>
@@ -142,9 +148,10 @@ fast wif or parking, and what you love about the neighborhood.</p>
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
-            </label>
-            <hr/>
-            <label>
+            </div>
+            
+            <div>
+                <hr/>
                 <h4>Create a title for your spot</h4>
                 <p>Catch guests' attention with a spot title that highlights what makes
 your place special.</p>
@@ -155,9 +162,10 @@ your place special.</p>
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
-            </label>
-            <hr/>
-            <label>
+            </div>
+            
+            <div>
+                <hr/>
                 <h4>Set a base price for your spot</h4>
                 <p>Competitive pricing can help your listing stand out and rank higher
 in search results.</p>
@@ -168,9 +176,10 @@ in search results.</p>
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                 />
-            </label>
-            <hr/>
-            <label>
+            </div>
+            
+            <div>
+              <hr/>  
                 <h4>Liven up your spot with photos</h4>
                 <p>Submit a link to at least one photo to publish your spot.</p>
                 {validationErrors.url1?<p className="errors">{validationErrors.url1}</p>:''}
@@ -205,10 +214,12 @@ in search results.</p>
                     value={url5}
                     onChange={(e) => seturl5(e.target.value)}
                 />
-            </label>
-            <hr/>
+             <hr/>   
+            </div>
+            
             <button type='submit'>{formType}</button>
         </form>
+        </div>
     )
 
 }

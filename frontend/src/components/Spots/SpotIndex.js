@@ -41,39 +41,42 @@ const SpotIndex = ({ spotId }) => {
                     </div>
                 </div> */}
             <div className='main'>
+                
                 <div className='spotcontainer'>
 
 
 
                     {spotsArray.map((spot) => (
-
+                        <Link className='spotlink' to={`/spots/${spot.id}`}>
                         <div className='spot' key={spot.id}>
-                            <Link to={`/spots/${spot.id}`}>{spot.name}
                                 {/* {spot.previewImage} */}
                                 <div className='prevImgindex'>
                                     <img className='img1' src={spot.previewImage} title={spot.name} />
 
                                 </div>
-                            </Link>
+                            
                             <div className='location-container'>
+                                
                                 <div className='spot1'>
                                     {spot.city},
                                     {spot.state}
                                 </div><div className='starindex'>
                                     <div className='star-rate'>
                                         <h2>
-                                            {spot.avgRating === 0 ? (<h3><i className="fa fa-star" />New</h3>) : ''}
+                                            {!spot.avgRating ? (<h3><i className="fa fa-star" />New</h3>) : ''}
                                             {spot.avgRating > 0 ? (<h3><i className="fa fa-star" />{spot.avgRating.toFixed(2)}</h3>) : ''}
                                         </h2>
                                     </div>
                                 </div>
-                                {/* {console.log('SPOTINDEX ID', singleSpot)} */}
+                                {console.log('SPOTINDEX ID', spot)}
                                 <div className='spot2'>
                                     ${spot.price}night
                                 </div>
+                                
                             </div>
-
+                            
                         </div>
+                        </Link>
                     ))}
                 </div>
 

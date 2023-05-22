@@ -30,6 +30,8 @@ new Date (b.createdAt) - new Date(a.createdAt)
     //     const userInfo=useSelector(state=>state.session.user)
     console.log('review user info', reviewsObj)
     // console.log('this is reviews array',reviewArray)
+    // if(!reviewsObj.User.firstName) return null
+    console.log('REVIEWOBJ',sortedreview)
     return (
 
         <div>
