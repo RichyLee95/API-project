@@ -41,6 +41,7 @@ const SpotForm = ({ spot, formType }) => {
         // if(!url2) errors.url2='Image URL must end in .png, .jpg, or .jpeg'
 
         setValidationErrors(errors)
+        if (Object.keys(errors).length === 0) {//added error.length check to stop page if errors present
         spot = {
             ...spot,
             country,
@@ -83,7 +84,7 @@ const SpotForm = ({ spot, formType }) => {
         }
         // }
     }
-
+    }
     return (
         <div className='form-container'>
         <form onSubmit={handleSubmit}>
