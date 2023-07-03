@@ -34,10 +34,14 @@ const handleSubmit = (e) => {
 
 return (
   <>
+  <div className="outer-login">
   <div className="main">
     <div classname = 'login'>
     <h1 classname='login'>Log In</h1>
     </div>
+    {errors.credential && (
+        <p className='login-errors'>{errors.credential}</p>
+      )}
     <form onSubmit={handleSubmit}>
       <div className="login-user">
         <input className="login-input"
@@ -57,14 +61,13 @@ return (
           required
         />
       </div>
-      {errors.credential && (
-        <p>{errors.credential}</p>
-      )}
+      
       <button className="login-btn" disabled={credential.length < 4 || password.length < 6} type="submit">Log In</button>
       <div className="demodiv">
       <button className="demouser" onClick={(demoUser)}>Demo User</button>
     </div>
     </form>
+</div>
 </div>
   </>
 );
