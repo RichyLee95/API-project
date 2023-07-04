@@ -87,7 +87,7 @@ const SpotForm = ({ spot, formType }) => {
     }
     return (
         <div className='form-container'>
-        <form onSubmit={handleSubmit}>
+        <form className='create-spot-form' onSubmit={handleSubmit}>
             <div>
             <h1>Create a new Spot</h1>
             </div>
@@ -141,7 +141,7 @@ const SpotForm = ({ spot, formType }) => {
 <hr/>
                 <h4>Describe your place to guests</h4>
                 <p>Mention the best features of your space, any special amentities like
-fast wif or parking, and what you love about the neighborhood.</p>
+fast wifi or parking, and what you love about the neighborhood.</p>
                 {validationErrors.description?<p className="errors">{validationErrors.description}</p>:''}
                 <input
                 placeholder='Please write at least 30 characters'

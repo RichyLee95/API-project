@@ -62,9 +62,11 @@ const ReviewForm = ({ reviews, formType, spotId }) => {
                     //  disabled={false}
                     // value={stars}
                     onChange={onChange}
+                    
                 />
+                Stars
                 </div>
-               Star Rating 
+               
             </div>
             {/* <label>
                 Star Rating

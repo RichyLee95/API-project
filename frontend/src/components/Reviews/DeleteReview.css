@@ -1,8 +1,29 @@
+.delete-review{
+  width:25rem;
+  height:12rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
 .btn-yes{
     background-color: red;
   color: white;
+  width:23rem;
+  height:2.5rem;
 }
 .btn-no{
     background-color: grey;
   color: white;
+  width:23rem;
+  height:2.5rem;
+}
+.confirm-delete{
+margin:5px;
+}
+.delete-check{
+margin-top: 5px;
+}
+.delete-button{
+  display: flex;
+  flex-direction: column;
 }
