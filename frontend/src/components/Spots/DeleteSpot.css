@@ -1,0 +1,30 @@
+.delete-spot{
+    width:25rem;
+    height:12rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-yes{
+      background-color: red;
+    color: white;
+    width:23rem;
+    height:2.5rem;
+    margin: 15px 0px 10px;
+  }
+  .btn-no{
+      background-color: grey;
+    color: white;
+    width:23rem;
+    height:2.5rem;
+  }
+  .confirm-delete-spot{
+  margin:5px;
+  }
+  .delete-check-spot{
+  margin-top: 5px;
+  }
+  .delete-button-spot{
+    display: flex;
+    flex-direction: column;
+  }

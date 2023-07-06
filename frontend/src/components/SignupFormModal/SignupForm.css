@@ -1,0 +1,64 @@
+.Signup-card{
+width:25rem;
+height:25rem;
+display:flex;
+flex-direction: column;
+align-items: center;
+row-gap: 25px;
+/* gap:20px; */
+}
+.signup-form{
+    margin:25px;
+    
+}
+.signup{
+    /* margin:10px; */
+    text-align: center;
+}
+
+.lastname{
+width:20rem;
+
+/* margin: 20px 0px 0px;  */
+}
+
+.firstname{
+    width:20rem;
+    /* margin: 20px 0px 0px;  */
+}
+
+.username{
+    width:20rem;
+    /* margin: 20px 0px 0px;  */
+}
+
+.password{
+    width:20rem;
+    /* margin: 20px 0px 0px;  */
+}
+
+.confirm-password{
+    width:20rem;
+    /* margin: 20px 0px 0px;  */
+}
+
+.email{
+    width:20rem;
+    /* margin: 20px 0px 0px;  */
+}
+.signup-btn{
+    background-color: red;
+    color: white;
+    width:23rem;
+    height:2.5rem;
+    margin: 15px 0px 10px;
+    align-items: center;   
+}
+.signup-btn:disabled{
+    background-color: white;
+color: rgb(79, 75, 75); 
+}
+.errors{
+    color:red;
+    
+}

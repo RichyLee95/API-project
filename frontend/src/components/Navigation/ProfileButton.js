@@ -43,7 +43,8 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
+    <div className="profile-box">
+    <img className='hambugericon' src='https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg'/>
           <button className="profilebtn" onClick={openMenu}>
             <i className="fas fa-user-circle" />
           </button>
@@ -74,7 +75,7 @@ function ProfileButton({ user }) {
               </>
             )}
           </ul>
-    </>
+    </div>
   );
 }
 
