@@ -44,37 +44,40 @@ function ProfileButton({ user }) {
 
   return (
     <div className="profile-box">
-    <img className='hambugericon' src='https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg'/>
-          <button className="profilebtn" onClick={openMenu}>
-            <i className="fas fa-user-circle" />
-          </button>
-          <ul className={ulClassName} ref={ulRef}>
-            {user ? (
-              <>
-                <p>Hello, {user.firstName}</p>
-                <li>{user.username}</li>
-                <li>{user.firstName} {user.lastName}</li>
-                <li>{user.email}</li>
-                <li><Link to='/spots/current'>Manage Spots</Link></li>
-                <li>
-                  <button onClick={logout}>Log Out</button>
-                </li>
-              </>
-            ) : (
-              <>
-                <OpenModalMenuItem
-                  itemText="Log In"
-                  onItemClick={closeMenu}
-                  modalComponent={<LoginFormModal />}
-                />
-                <OpenModalMenuItem
-                  itemText="Sign Up"
-                  onItemClick={closeMenu}
-                  modalComponent={<SignupFormModal />}
-                />
-              </>
-            )}
-          </ul>
+      <div className="profile-icon" onClick={openMenu}>
+        <img className='hambugericon' src='https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg' />
+        <button className="profilebtn" >
+
+          <i className="fas fa-user-circle" />
+        </button>
+      </div>
+      <ul className={ulClassName} ref={ulRef}>
+        {user ? (
+          <>
+            <p>Hello, {user.firstName}</p>
+            <li>{user.username}</li>
+            <li>{user.firstName} {user.lastName}</li>
+            <li>{user.email}</li>
+            <li><Link to='/spots/current'>Manage Spots</Link></li>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </>
+        ) : (
+          <>
+            <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText="Sign Up"
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
+          </>
+        )}
+      </ul>
     </div>
   );
 }
