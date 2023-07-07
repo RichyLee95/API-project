@@ -1,13 +1,13 @@
 .main-div{
     display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 .singleSpotdetail{
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-bottom: 20px;
 }
 .spotname{
@@ -20,10 +20,11 @@
 .img-box{
     display: flex;
   margin-bottom: 20px;
+  justify-content: center;
 }
 
 .prevImgcontainer{
-    margin-right: 20px;
+    margin-right: 10px;
 }
 .prevImg{
     width: 400px;
@@ -31,20 +32,21 @@
   object-fit: cover;
 }
 .smallImg{
-height:100px;
-width:120px;
+height:400px;
+width:450px;
 border-color: black;
-flex-direction: column;
+gap:0.5rem;
+grid-template-columns: repeat(2,1fr);
+display: grid;
+
 
 }
 .fourpic{
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
-.subimages{
-    margin-right: 10px;
-}
+
 .reservebox{
     display: flex;
   justify-content: space-between;
@@ -53,9 +55,10 @@ flex-direction: column;
   border-color: black;
   flex-direction: column;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
   align-self: flex-end;
-  border: solid;
+  border:2px solid;
+  margin-bottom: 2rem;
 }
 .reserve-btn {
     font-size: 1.2rem; 
@@ -66,7 +69,6 @@ flex-direction: column;
 .review-box {
     display: flex;
     flex-direction: column;
-    align-items: end;
     margin-bottom: 20px;
     justify-content: space-around;
   }
@@ -81,4 +83,11 @@ flex-direction: column;
   .reservebox .price {
     font-size: 24px;
  
+  }
+  .singlespot-middle{
+    display:grid;
+    grid-template-columns: 3fr 2fr;
+    gap:5rem;
+    margin: 2rem 0 2rem;
+    border-bottom: 2px solid black;
   }

@@ -90,3 +90,7 @@ align-items: center;
     display:flex;
     justify-content: space-between;
   }
+.prevImgindex{
+  height:80%;
+  width:100%;
+}
