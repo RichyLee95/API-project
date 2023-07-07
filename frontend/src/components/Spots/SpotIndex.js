@@ -24,58 +24,48 @@ const SpotIndex = ({ spotId }) => {
     return (
         <section>
 
-            {/* <div className='header'>
-                    <div className='Logobox'>
-                        <img className='logo' src='https://static.vecteezy.com/system/resources/previews/022/091/985/original/martial-arts-logo-design-icon-illustration-free-vector.jpg'></img>
-                        <h2>Fightbnb</h2>
-                    </div>
-                    <div className='newspot'>
-                        {loggedInUser ? (
-                            <Link
-                                className="Create Spot"
-                                to="/spots/new"
-                            >
-                                Create a New Spot
-                            </Link>
-                        ) : ""}
-                    </div>
-                </div> */}
-            <div className='main'>
-                
+
+            <div className='spot-index-main'>
+
                 <div className='spotcontainer'>
 
 
 
                     {spotsArray.map((spot) => (
                         <Link className='spotlink' to={`/spots/${spot.id}`}>
-                        <div className='spot' key={spot.id}>
-                                {/* {spot.previewImage} */}
+                            <div className='spot' key={spot.id}>
+                               
                                 <div className='prevImgindex'>
                                     <img className='img1' src={spot.previewImage} title={spot.name} />
 
                                 </div>
-                            
-                            <div className='location-container'>
-                                
-                                <div className='spot1'>
-                                    {spot.city},
-                                    {spot.state}
-                                </div><div className='starindex'>
-                                    <div className='star-rate'>
-                                        <h2>
-                                            {!spot.avgRating ? (<h3><i className="fa fa-star" />New</h3>) : ''}
-                                            {spot.avgRating > 0 ? (<h3><i className="fa fa-star" />{spot.avgRating.toFixed(2)}</h3>) : ''}
-                                        </h2>
+
+                                <div className='location-container'>
+                                    <div className='top-location'>
+                                        <div className='spot1'>
+                                            {spot.city},
+                                            {spot.state}
+                                        </div>
+
+
+                                        
+                                            <div className='star-rate'>
+
+                                                {!spot.avgRating ? (<h2><i className="fa fa-star" />New</h2>) : ''}
+                                                {spot.avgRating > 0 ? (<h2><i className="fa fa-star" />{spot.avgRating.toFixed(2)}</h2>) : ''}
+
+                                            </div>
+                                        
                                     </div>
-                                </div>
-                                {console.log('SPOTINDEX ID', spot)}
-                                <div className='spot2'>
-                                    ${spot.price}night
-                                </div>
+                                </div>    
+                                    <div className='spot2'>
+                                        ${spot.price}night
+                                    </div>
+
+
                                 
+
                             </div>
-                            
-                        </div>
                         </Link>
                     ))}
                 </div>

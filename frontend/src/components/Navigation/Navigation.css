@@ -8,7 +8,9 @@
     justify-content: space-between;
     align-items: center;
     height: 100px;
-    padding: 20px
+    padding: 20px;
+    border-bottom: 2px solid rgb(118, 107, 107);
+    margin-bottom: 15px;
   }
   .Logobox {
     display: flex;
@@ -30,6 +32,7 @@
   .profilebtn {
     height:25px;
     width:30px;
+    cursor: pointer;
   }
     .logo{
         width:80px;
@@ -66,5 +69,5 @@
       align-items: center;
       display: flex;
       flex-direction: row;
-      
+      cursor: pointer;
     }

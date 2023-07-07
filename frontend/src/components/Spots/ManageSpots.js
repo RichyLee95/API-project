@@ -45,7 +45,7 @@ const ManageSpots = () => {
                         <div key={spot.id}>
                             <Link to={`/spots/${spot.id}`}>
                                 <div className='imgspot'>
-                                    <div><img className='img1' src={spot.previewImage} /></div>
+                                    <div><img className='single-spot-img1' src={spot.previewImage} /></div>
                                     {spot.city},{spot.state}</div>
                                 <div className='starindex'>
                                     <div className='star-rate'>
