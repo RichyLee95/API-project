@@ -41,8 +41,8 @@ const ManageSpots = () => {
 
                     {spots.length > 0 && spots.map((spot) => (
 
-                        <div key={spot.id}>
-                            <Link to={`/spots/${spot.id}`}>
+                        <div className='manage-spot-card' key={spot.id}>
+                            <Link className='manage-spot-card-link' to={`/spots/${spot.id}`}>
                                 <div className='imgspot'>
                                     <div><img className='single-spot-img1' src={spot.previewImage} /></div>
                                     </div>
@@ -63,12 +63,12 @@ const ManageSpots = () => {
                             </Link>
                             <div className='update-delete'>
                             <div className='edit-btn'>
-                                <button className='editbutton'><Link to={`/spots/${spot.id}/edit`}
+                                <button className='editbutton'><Link className='edit-btn-link' to={`/spots/${spot.id}/edit`}
                                 >
                                     Update
                                 </Link></button>
                             </div>
-                            <button className='delete-btn'>
+                            <div className='delete-spot-btn'>
                                 <OpenModalButton buttonText={'Delete Spot'}
                                     modalComponent={
                                         <DeleteSpot
@@ -76,7 +76,7 @@ const ManageSpots = () => {
                                             key={spot.id} />
                                     }
                                 />
-                            </button>
+                                </div>
                             </div>
                         </div>
                     ))}

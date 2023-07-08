@@ -62,3 +62,21 @@
   height:2.5rem;
   text-decoration: none;
 }
+.manage-spot-card{
+  text-decoration: none;
+}
+.delete-spot-btn button{
+  background-color: red;
+  color: white;
+  width:8rem;
+  height:2.5rem;
+  text-decoration: none;
+}
+.manage-spot-card-link{
+  text-decoration: none;
+  color: black;
+}
+.edit-btn-link{
+  text-decoration: none;
+  color:white;
+}
