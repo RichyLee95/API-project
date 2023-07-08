@@ -38,7 +38,11 @@ const SpotForm = ({ spot, formType }) => {
         if (!name) errors.name = 'Name is required'
         if (!price) errors.price = 'Price is required'
         if (!url1) errors.url1 = 'Preview image is required'
-        // if(!url2) errors.url2='Image URL must end in .png, .jpg, or .jpeg'
+        if (url1 && !url1.endsWith('.png') && !url1.endsWith('.jpg')) errors.url1 = 'Image URL needs to end in png or jpg (or jpeg)'
+        if (url2 && !url2.endsWith('.png') && !url2.endsWith('.jpg')) errors.url2 = 'Image URL needs to end in png or jpg (or jpeg)'
+        if (url3 && !url3.endsWith('.png') && !url3.endsWith('.jpg')) errors.url3 = 'Image URL needs to end in png or jpg (or jpeg)'
+        if (url4 && !url4.endsWith('.png') && !url4.endsWith('.jpg')) errors.url4 = 'Image URL needs to end in png or jpg (or jpeg)'
+        if (url5 && !url5.endsWith('.png') && !url5.endsWith('.jpg')) errors.url5 = 'Image URL needs to end in png or jpg (or jpeg)'
 
         setValidationErrors(errors)
         if (Object.keys(errors).length === 0) {//added error.length check to stop page if errors present

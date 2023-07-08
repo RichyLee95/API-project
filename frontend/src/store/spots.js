@@ -5,6 +5,7 @@ export const GET_SINGLE_SPOT = 'spots/GET_SINGLE_SPOT'
 export const UPDATE_SPOT = 'spots/UPDATE_SPOT'
 export const REMOVE_SPOT = 'spots/REMOVE_SPOT'
 export const GET_USER_SPOT = 'spots/GET_USER_SPOT'
+export const CLEAR_SPOTS = 'spots/CLEAR_SPOTS'
 /**  Action Creators: */
 
 //get all spots
@@ -31,6 +32,9 @@ export const currentUserSpot = (spot) => ({
     spot,
 })
 
+export const clearSpots = () => ({
+    type:CLEAR_SPOTS
+})
 /** Thunk Action Creators: */
 //get all spots
 export const fetchSpots = () => async (dispatch) => {
@@ -194,7 +198,14 @@ const spotsReducer = (state = initialState, action) => {
             })
             return newState
         }
-
+        case CLEAR_SPOTS:{
+            const newState = {
+                ...state,
+                allSpots:{},
+                currentSpot:{}
+            }
+            return newState
+        }
         default:
             return state
     }

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSpotsByUser } from '../../store/spots';
+import { clearSpots, getSpotsByUser } from '../../store/spots';
 import { Link } from 'react-router-dom';
 import DeleteSpot from './DeleteSpot';
 import OpenModalButton from "../OpenModalButton";
@@ -18,6 +18,7 @@ const ManageSpots = () => {
         state.session.user)
     useEffect(() => {
         dispatch(getSpotsByUser())
+        return () => {dispatch (clearSpots())}
     }, [dispatch])
 
     return (
@@ -25,7 +26,10 @@ const ManageSpots = () => {
             <div className='page'>
                 <div className='managespots'>
                     <h1>Manage Spots</h1>
-
+                <div className='no-spots'>
+                {spots.length >= 1 ? (
+          ""
+        ) :
                     <Link
                         className="Create Spot"
                         to="/spots/new"
@@ -33,8 +37,8 @@ const ManageSpots = () => {
                         <button className='manage-newspot'>
                             Create a New Spot
                         </button>
-                    </Link>
-
+                    </Link>}
+</div>
                 </div>
 
                 <div className='mainspotcontainer'>
