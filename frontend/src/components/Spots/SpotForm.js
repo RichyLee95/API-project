@@ -88,13 +88,13 @@ const SpotForm = ({ spot, formType }) => {
     return (
         <div className='form-container'>
             <form className='create-spot-form' onSubmit={handleSubmit}>
-            {formType === 'Create Spot' && (
-                <h1>Create a Spot</h1>
-            )}
-            {formType === 'Update Spot' && (
-                <h1>Update your Spot</h1>
-            )}
-                <div>
+                {formType === 'Create Spot' && (
+                    <h1>Create a Spot</h1>
+                )}
+                {formType === 'Update Spot' && (
+                    <h1>Update your Spot</h1>
+                )}
+                <div className='create-spot-where'>
                     <h2>Where's your place located?</h2>
 
                     <p>Guests will only get your exact address once they booked a reservation.</p>
@@ -102,7 +102,7 @@ const SpotForm = ({ spot, formType }) => {
                 <div>
                     {validationErrors.country ? <p className="errors">{validationErrors.country}</p> : ''}
                     <p>Country</p>
-                    <input
+                    <input className='country-input'
                         placeholder='Country'
                         type='text'
                         value={country}
@@ -112,41 +112,42 @@ const SpotForm = ({ spot, formType }) => {
                 <div>
                     {validationErrors.address ? <p className="errors">{validationErrors.address}</p> : ''}
                     <p>Street Address</p>
-                    <input
+                    <input className='address-input'
                         placeholder='Address'
                         type='text'
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                     />
                 </div>
+                <div className='city-state'>
                 <div>
-                   <p>City</p> 
+                    <p>City</p>
                     {validationErrors.city ? <p className="errors">{validationErrors.city}</p> : ''}
-                    <input
+                    <input className='city-input'
                         placeholder='City'
                         type='text'
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                     />
-                
-                
-                   <p>State</p> 
-                    {validationErrors.state ? <p className="errors">{validationErrors.state}</p> : ''}
-                    <input
-                        placeholder='State'
-                        type='text'
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                    />
-                
 </div>
+                    <div>
+                        <p>State</p>
+                        {validationErrors.state ? <p className="errors">{validationErrors.state}</p> : ''}
+                        <input className='state-input'
+                            placeholder='State'
+                            type='text'
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                        />
+                    </div>
+                </div>
                 <div>
                     <hr />
                     <h4>Describe your place to guests</h4>
                     <p>Mention the best features of your space, any special amentities like
                         fast wifi or parking, and what you love about the neighborhood.</p>
                     {validationErrors.description ? <p className="errors">{validationErrors.description}</p> : ''}
-                    <input
+                    <input className='description-input'
                         placeholder='Please write at least 30 characters'
                         type='text'
                         value={description}
@@ -160,7 +161,7 @@ const SpotForm = ({ spot, formType }) => {
                     <p>Catch guests' attention with a spot title that highlights what makes
                         your place special.</p>
                     {validationErrors.name ? <p className="errors">{validationErrors.name}</p> : ''}
-                    <input
+                    <input className='title-input'
                         placeholder='Name of your spot'
                         type='text'
                         value={name}
@@ -174,7 +175,7 @@ const SpotForm = ({ spot, formType }) => {
                     <p>Competitive pricing can help your listing stand out and rank higher
                         in search results.</p>
                     {validationErrors.price ? <p className="errors">{validationErrors.price}</p> : ''}
-                    <input
+                    <input className='price-input'
                         placeholder='Price per night (USD)'
                         type='number'
                         value={price}
@@ -182,46 +183,56 @@ const SpotForm = ({ spot, formType }) => {
                     />
                 </div>
                 {formType === 'Create Spot' && (
-                <div>
-                    <hr />
-                    <h4>Liven up your spot with photos</h4>
-                    <p>Submit a link to at least one photo to publish your spot.</p>
-                    {validationErrors.url1 ? <p className="errors">{validationErrors.url1}</p> : ''}
-                    <input
-                        placeholder='Preview Image URL'
-                        type='text'
-                        value={url1}
-                        onChange={(e) => seturl1(e.target.value)}
-                    />
-                    {validationErrors.url2 ? <p className="errors">{validationErrors.url2}</p> : ''}
-                    <input
-                        placeholder='Image URL'
-                        type='text'
-                        value={url2}
-                        onChange={(e) => seturl2(e.target.value)}
-                    />
-                    <input
-                        placeholder='Image URL'
-                        type='text'
-                        value={url3}
-                        onChange={(e) => seturl3(e.target.value)}
-                    />
-                    <input
-                        placeholder='Image URL'
-                        type='text'
-                        value={url4}
-                        onChange={(e) => seturl4(e.target.value)}
-                    />
-                    <input
-                        placeholder='Image URL'
-                        type='text'
-                        value={url5}
-                        onChange={(e) => seturl5(e.target.value)}
-                    />
-                    <hr />
-                </div>
+                    <div className='create-spot-photos'>
+                        <hr />
+                        <h4>Liven up your spot with photos</h4>
+                        <p>Submit a link to at least one photo to publish your spot.</p>
+                        {validationErrors.url1 ? <p className="errors">{validationErrors.url1}</p> : ''}
+                        <div>
+                        <input className='photo-input1'
+                            placeholder='Preview Image URL'
+                            type='text'
+                            value={url1}
+                            onChange={(e) => seturl1(e.target.value)}
+                        />
+                        </div>
+                        {validationErrors.url2 ? <p className="errors">{validationErrors.url2}</p> : ''}
+                        <div>
+                        <input className='photo-input2'
+                            placeholder='Image URL'
+                            type='text'
+                            value={url2}
+                            onChange={(e) => seturl2(e.target.value)}
+                        />
+                        </div>
+                        <div>
+                        <input className='photo-input3'
+                            placeholder='Image URL'
+                            type='text'
+                            value={url3}
+                            onChange={(e) => seturl3(e.target.value)}
+                        />
+                        </div>
+                        <div>
+                        <input className='photo-input4'
+                            placeholder='Image URL'
+                            type='text'
+                            value={url4}
+                            onChange={(e) => seturl4(e.target.value)}
+                        />
+                        </div>
+                        <input className='photo-input5'
+                            placeholder='Image URL'
+                            type='text'
+                            value={url5}
+                            onChange={(e) => seturl5(e.target.value)}
+                        />
+                        <hr />
+                    </div>
                 )}
-                <button type='submit'>{formType}</button>
+                <div>
+                <button className='spotform-submit-btn' type='submit'>{formType}</button>
+            </div>
             </form>
         </div>
     )
