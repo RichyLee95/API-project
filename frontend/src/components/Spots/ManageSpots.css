@@ -49,6 +49,7 @@
   width:8rem;
   height:2.5rem;
   text-decoration: none;
+  cursor: pointer;
 }
 .update-delete{
   display: flex;
@@ -71,6 +72,7 @@
   width:8rem;
   height:2.5rem;
   text-decoration: none;
+  cursor: pointer;
 }
 .manage-spot-card-link{
   text-decoration: none;

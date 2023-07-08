@@ -50,7 +50,7 @@ new Date (b.createdAt) - new Date(a.createdAt)
                             }
                         /> }
                     {/* {console.log('USER ID', loggedInUser.id)} */}
-                    {console.log('REVIEW ID', reviewsObj)}
+
                 </div>
             ))}
 

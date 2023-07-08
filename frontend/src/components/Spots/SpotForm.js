@@ -23,10 +23,25 @@ const SpotForm = ({ spot, formType }) => {
     const [url4, seturl4] = useState(spot?.SpotImages?.[3]?.url ?? '')
     const [url5, seturl5] = useState(spot?.SpotImages?.[4]?.url ?? '')
     const [validationErrors, setValidationErrors] = useState({})
-    // useEffect(()=>{
-    //     let validationErrors = {}
-    //     if()
-    // })
+    useEffect(()=>{
+        if(spot){
+            setCountry(spot.country || '');
+      setAddress(spot.address || '');
+      setCity(spot.city || '');
+      setState(spot.state || '');
+      setLat(spot.lat || 1);
+      setLng(spot.lng || 1);
+      setPrice(spot.price || '');
+      setDescription(spot.description || '');
+      setName(spot.name || '');
+      setPreview(spot.preview || '');
+      seturl1(spot.SpotImages?.[0]?.url || '');
+      seturl2(spot.SpotImages?.[1]?.url || '');
+      seturl3(spot.SpotImages?.[2]?.url || '');
+      seturl4(spot.SpotImages?.[3]?.url || '');
+      seturl5(spot.SpotImages?.[4]?.url || '');
+        }
+    },[spot])
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errors = {}
@@ -37,13 +52,14 @@ const SpotForm = ({ spot, formType }) => {
         if (description.length < 30) errors.description = 'Description needs a minimum of 30 characters'
         if (!name) errors.name = 'Name is required'
         if (!price) errors.price = 'Price is required'
+        if (formType === 'Create Spot') {
         if (!url1) errors.url1 = 'Preview image is required'
         if (url1 && !url1.endsWith('.png') && !url1.endsWith('.jpg')) errors.url1 = 'Image URL needs to end in png or jpg (or jpeg)'
         if (url2 && !url2.endsWith('.png') && !url2.endsWith('.jpg')) errors.url2 = 'Image URL needs to end in png or jpg (or jpeg)'
         if (url3 && !url3.endsWith('.png') && !url3.endsWith('.jpg')) errors.url3 = 'Image URL needs to end in png or jpg (or jpeg)'
         if (url4 && !url4.endsWith('.png') && !url4.endsWith('.jpg')) errors.url4 = 'Image URL needs to end in png or jpg (or jpeg)'
         if (url5 && !url5.endsWith('.png') && !url5.endsWith('.jpg')) errors.url5 = 'Image URL needs to end in png or jpg (or jpeg)'
-
+        }
         setValidationErrors(errors)
         if (Object.keys(errors).length === 0) {//added error.length check to stop page if errors present
             spot = {

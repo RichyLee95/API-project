@@ -99,7 +99,7 @@ const SingleSpot = () => {
 
                 <div className='review-box'>
                     {/* Reviews */}
-                    <div>
+                    <div className='review-block'>
                         {spot.numReviews === 0 ? (<h2><i className="fa fa-star" />New</h2>) : ''}
                         {spot.numReviews === 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h2>) : ''}
                         {spot.numReviews > 1 ? (<h2><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h2>) : ''}
@@ -110,8 +110,9 @@ const SingleSpot = () => {
                     </div>
 
                     {/* <CreateReviewForm spotId={spotId} /> */}
-
+<div className='review-index-block'>
                     <ReviewIndex spotId={spotId} />
+                    </div>
                 </div>
             </div>
         </>

@@ -67,10 +67,10 @@ const ManageSpots = () => {
                             </Link>
                             <div className='update-delete'>
                             <div className='edit-btn'>
-                                <button className='editbutton'><Link className='edit-btn-link' to={`/spots/${spot.id}/edit`}
-                                >
+                                <Link className='edit-btn-link' to={`/spots/${spot.id}/edit`}
+                                ><button className='editbutton'>
                                     Update
-                                </Link></button>
+                                </button></Link>
                             </div>
                             <div className='delete-spot-btn'>
                                 <OpenModalButton buttonText={'Delete Spot'}
