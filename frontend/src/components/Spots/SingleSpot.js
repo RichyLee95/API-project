@@ -43,6 +43,7 @@ const SingleSpot = () => {
     // console.log('USERREVIEW', usersReview)
 
     const previewImage = spot.SpotImages.find((image) => image.preview === true)
+    const subImages = spot.SpotImages.filter((image) => image.preview === false)
     return (
         <>
             <div className='main-div'>
@@ -61,7 +62,7 @@ const SingleSpot = () => {
                     {/* {spot.SpotImages} */}
                     <div className='smallImg'>
                         {/* {previewImage ? <div><img src={previewImage.url} /></div> : ''} */}
-                        {smallImg.map((image) =>
+                        {subImages.map((image) =>
 
                         (<div className='subimages'><img class='fourpic' src={image.url} /></div>
 

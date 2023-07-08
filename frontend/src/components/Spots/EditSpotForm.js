@@ -13,7 +13,7 @@ console.log('editSpotform',spot)
     useEffect(() => {
         dispatch(getSpotById(spotId))
     }, [dispatch, spotId])
-    if(!spot.SpotImages) return (<></>)
+    if(!spot || !spot.SpotImages) return (<></>)
 // console.log('WHAT IS THIS', spot)
     return (
         Object.keys(spot).length >= 1 && (

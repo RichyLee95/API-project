@@ -88,9 +88,12 @@ const SpotForm = ({ spot, formType }) => {
     return (
         <div className='form-container'>
             <form className='create-spot-form' onSubmit={handleSubmit}>
-                <div>
-                    <h1>Create a new Spot</h1>
-                </div>
+            {formType === 'Create Spot' && (
+                <h1>Create a Spot</h1>
+            )}
+            {formType === 'Update Spot' && (
+                <h1>Update your Spot</h1>
+            )}
                 <div>
                     <h2>Where's your place located?</h2>
 
@@ -98,7 +101,7 @@ const SpotForm = ({ spot, formType }) => {
                 </div>
                 <div>
                     {validationErrors.country ? <p className="errors">{validationErrors.country}</p> : ''}
-                    Country
+                    <p>Country</p>
                     <input
                         placeholder='Country'
                         type='text'
@@ -108,7 +111,7 @@ const SpotForm = ({ spot, formType }) => {
                 </div>
                 <div>
                     {validationErrors.address ? <p className="errors">{validationErrors.address}</p> : ''}
-                    Street Address
+                    <p>Street Address</p>
                     <input
                         placeholder='Address'
                         type='text'
@@ -117,7 +120,7 @@ const SpotForm = ({ spot, formType }) => {
                     />
                 </div>
                 <div>
-                    City
+                   <p>City</p> 
                     {validationErrors.city ? <p className="errors">{validationErrors.city}</p> : ''}
                     <input
                         placeholder='City'
@@ -125,9 +128,9 @@ const SpotForm = ({ spot, formType }) => {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                     />
-                </div>
-                <div>
-                    State
+                
+                
+                   <p>State</p> 
                     {validationErrors.state ? <p className="errors">{validationErrors.state}</p> : ''}
                     <input
                         placeholder='State'
@@ -135,8 +138,8 @@ const SpotForm = ({ spot, formType }) => {
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                     />
-                </div>
-
+                
+</div>
                 <div>
                     <hr />
                     <h4>Describe your place to guests</h4>
@@ -173,12 +176,12 @@ const SpotForm = ({ spot, formType }) => {
                     {validationErrors.price ? <p className="errors">{validationErrors.price}</p> : ''}
                     <input
                         placeholder='Price per night (USD)'
-                        type='text'
+                        type='number'
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </div>
-
+                {formType === 'Create Spot' && (
                 <div>
                     <hr />
                     <h4>Liven up your spot with photos</h4>
@@ -217,7 +220,7 @@ const SpotForm = ({ spot, formType }) => {
                     />
                     <hr />
                 </div>
-
+                )}
                 <button type='submit'>{formType}</button>
             </form>
         </div>

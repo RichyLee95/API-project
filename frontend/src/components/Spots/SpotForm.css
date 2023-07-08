@@ -4,9 +4,11 @@
     align-items: center;
     justify-content: center;
     /* width:20rem; */
-    text-align: center;
+    margin-left: 25rem;
+    margin-right: 25rem;
     
 }
 .create-spot-form{
-    align-items: center;
+    display:flex;
+    flex-direction: column;
 }

@@ -1,8 +1,8 @@
 .page {
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 20px;
+    text-decoration: none;
   }
 
   .managespots {
@@ -14,6 +14,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    
   }
 
   .imgspot {
@@ -21,6 +22,7 @@
     flex-direction: column;
     align-items: center;
     width: 300px;
+    
   }
   .single-spot-img1 {
     width: 300px;
@@ -33,3 +35,30 @@
     align-items: center;
     margin-top: 10px;
   }
+  .manage-newspot{
+    margin-top: 1rem;
+    background-color: red;
+  color: white;
+  width:10rem;
+  height:2.5rem;
+  text-decoration: none;
+  }
+.editbutton{
+    background-color: red;
+  color: white;
+  width:8rem;
+  height:2.5rem;
+  text-decoration: none;
+}
+.update-delete{
+  display: flex;
+  gap:1rem;
+  align-items: center;
+}
+.delete-btn{
+  background-color: red;
+  color: white;
+  width:8rem;
+  height:2.5rem;
+  text-decoration: none;
+}

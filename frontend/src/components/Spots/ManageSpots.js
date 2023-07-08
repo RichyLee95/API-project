@@ -25,17 +25,16 @@ const ManageSpots = () => {
             <div className='page'>
                 <div className='managespots'>
                     <h1>Manage Spots</h1>
-                    <div className='newspot'> 
-                        {spots.length >= 1 ? (
-          ""
-        ) :<Link
-            className="Create Spot"
-            to="/spots/new"
-          >
-            Create a New Spot
-          </Link> }
-                        {console.log('SESSIONUSER', spots)}
-                    </div>
+
+                    <Link
+                        className="Create Spot"
+                        to="/spots/new"
+                    >
+                        <button className='manage-newspot'>
+                            Create a New Spot
+                        </button>
+                    </Link>
+
                 </div>
 
                 <div className='mainspotcontainer'>
@@ -46,8 +45,10 @@ const ManageSpots = () => {
                             <Link to={`/spots/${spot.id}`}>
                                 <div className='imgspot'>
                                     <div><img className='single-spot-img1' src={spot.previewImage} /></div>
-                                    {spot.city},{spot.state}</div>
-                                <div className='starindex'>
+                                    </div>
+                                    
+                                <div className='manage-starindex'>
+                                    <div className='manage-city-state'>{spot.city},{spot.state}</div>
                                     <div className='star-rate'>
                                         <h2>
                                             {!spot.avgRating ? (<h3><i className="fa fa-star" />New</h3>) : ''}
@@ -60,13 +61,14 @@ const ManageSpots = () => {
 
                                 </div>
                             </Link>
+                            <div className='update-delete'>
                             <div className='edit-btn'>
                                 <button className='editbutton'><Link to={`/spots/${spot.id}/edit`}
                                 >
-                                    Edit
+                                    Update
                                 </Link></button>
                             </div>
-                            <div className='delete-btn'>
+                            <button className='delete-btn'>
                                 <OpenModalButton buttonText={'Delete Spot'}
                                     modalComponent={
                                         <DeleteSpot
@@ -74,6 +76,7 @@ const ManageSpots = () => {
                                             key={spot.id} />
                                     }
                                 />
+                            </button>
                             </div>
                         </div>
                     ))}
