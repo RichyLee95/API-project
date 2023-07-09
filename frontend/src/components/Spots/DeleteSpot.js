@@ -20,7 +20,7 @@ const DeleteSpot = ({ spot }) => {
           <h3 className='delete-check-spot'>Are you sure you want to delete this spot?</h3>
           <div className='delete-button-spot'>
           <button className='btn-yes' onClick={handleDelete}>Yes (Delete Spot) </button>
-          <button className='btn-no' onClick={closeModal}>No</button>
+          <button className='btn-no' onClick={closeModal}>No (Keep Spot)</button>
         </div>
         </div>
       </div>

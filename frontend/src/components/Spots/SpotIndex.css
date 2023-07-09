@@ -47,6 +47,7 @@ min-width: 0; */
     right:0%;
     display:flex;
     text-decoration: none;
+    font-weight: bold;
   }
   .spot2 {
     /* padding: 10px; */
@@ -54,6 +55,7 @@ min-width: 0; */
     display:flex;
     text-decoration: none;
     color:black;
+    font-weight: bold;
   }
   .star-rate {
     display: flex;

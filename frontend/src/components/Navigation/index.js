@@ -10,12 +10,12 @@ function Navigation({ isLoaded }) {
     <div className='header'>
       <div className='Logobox'>
         <NavLink exact to="/"><img className="logo" src="https://static.vecteezy.com/system/resources/previews/022/091/985/original/martial-arts-logo-design-icon-illustration-free-vector.jpg" /></NavLink>
-        <NavLink exact to='/'><h2 className='logotext'>Fightbnb</h2></NavLink>
+        <NavLink className='logotext-link' exact to='/'><h2 className='logotext'>Fightbnb</h2></NavLink>
       </div>
       <div className='newspot'>
         {sessionUser ? (
           <Link
-            className="Create Spot"
+            className="Create-Spot"
             to="/spots/new"
           >
             Create a New Spot

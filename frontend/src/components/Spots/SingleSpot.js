@@ -78,9 +78,9 @@ const SingleSpot = () => {
                     {/* <div className='starbox'> */}
                         {/* <h4> */}
                             {/* ${spot.price}night */}
-                            {spot.numReviews === 0 ? (<h3 className='reservebox-top'>${spot.price}night          <i className="fa fa-star" />New</h3>) : ''}
-                            {spot.numReviews === 1 ? (<h3 className='reservebox-top'>${spot.price}night         <i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</h3>) : ''}
-                            {spot.numReviews > 1 ? (<h3 className='reservebox-top'>${spot.price}night           <i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</h3>) : ''}
+                            {spot.numReviews === 0 ? (<h3 className='reservebox-top'>${spot.price}night          <div><i className="fa fa-star" />New</div></h3>) : ''}
+                            {spot.numReviews === 1 ? (<h3 className='reservebox-top'>${spot.price}night         <div><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   review</div></h3>) : ''}
+                            {spot.numReviews > 1 ? (<h3 className='reservebox-top'>${spot.price}night           <div><i className="fa fa-star" />{spot.avgStarRating.toFixed(2)} · {spot.numReviews}   reviews</div></h3>) : ''}
                         {/* </h4> */}
                     {/* </div> */}
                     <div className='reserve-btn-box'>

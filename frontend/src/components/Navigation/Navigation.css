@@ -54,13 +54,24 @@
       position:absolute;
       right: 20px;
     top: 60px;
-    padding: 15px 50px 20px 15px;
+    padding: 15px 50px 20px 25px;
     border-radius: 15px;
     border:1px solid rgb(154, 146, 146);
     background-color: white;
     width:10rem;
-    height:10rem;
+    height:12rem;
+font-weight: bold;
+cursor: pointer;
     
+    }
+    .profile-dropdown button{
+      background-color: red;
+    color: white;
+    width:3rem;
+    height:2rem;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
     }
     .profile-icon{
       border:1px solid rgb(28, 27, 27);
@@ -71,4 +82,17 @@
       display: flex;
       flex-direction: row;
       cursor: pointer;
+    }
+    .logotext{
+      text-decoration: none;
+    }
+    .Create-Spot{
+      text-decoration: none;
+      font-weight: bold;
+      color: crimson;
+    }
+    .logotext-link{
+      text-decoration: none;
+      color: crimson;
+    font-size: 26px;
     }

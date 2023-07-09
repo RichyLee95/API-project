@@ -50,11 +50,13 @@
   height:2.5rem;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 5px 5px 5px black;
 }
 .update-delete{
   display: flex;
   gap:1rem;
   align-items: center;
+  margin-top: 1rem;
 }
 .delete-btn{
   background-color: red;
@@ -62,6 +64,7 @@
   width:8rem;
   height:2.5rem;
   text-decoration: none;
+  
 }
 .manage-spot-card{
   text-decoration: none;
@@ -73,10 +76,12 @@
   height:2.5rem;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 5px 5px 5px black;
 }
 .manage-spot-card-link{
   text-decoration: none;
   color: black;
+  font-weight: bold;
 }
 .edit-btn-link{
   text-decoration: none;

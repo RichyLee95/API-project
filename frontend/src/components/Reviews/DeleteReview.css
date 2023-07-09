@@ -1,6 +1,6 @@
 .delete-review{
-  width:25rem;
-  height:12rem;
+  width:27rem;
+  height:14rem;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -11,12 +11,16 @@
   width:23rem;
   height:2.5rem;
   margin: 15px 0px 10px;
+  box-shadow: 5px 5px 5px black;
+  cursor: pointer;
 }
 .btn-no{
     background-color: grey;
   color: white;
   width:23rem;
   height:2.5rem;
+  box-shadow: 5px 5px 5px black;
+  cursor: pointer;
 }
 .confirm-delete{
 margin:5px;
