@@ -36,7 +36,7 @@ const SpotIndex = ({ spotId }) => {
                             <div className='spot' key={spot.id}>
                                
                                 <div className='prevImgindex'>
-                                    <img className='img1' src={spot.previewImage} title={spot.name} />
+                                    <img className='img1' src={spot.previewImage} onError={(e) => { e.target.src = 'https://impactmartialartsal.com/files/Impact-Martial-Arts_karate-instructor.png'; }} title={spot.name} />
 
                                 </div>
 

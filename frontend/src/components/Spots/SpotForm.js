@@ -52,13 +52,14 @@ const SpotForm = ({ spot, formType }) => {
         if (description.length < 30) errors.description = 'Description needs a minimum of 30 characters'
         if (!name) errors.name = 'Name is required'
         if (!price) errors.price = 'Price is required'
+        if (price <= 0 ) errors.price = 'Price must be valid'
         if (formType === 'Create Spot') {
         if (!url1) errors.url1 = 'Preview image is required'
-        if (url1 && !url1.endsWith('.png') && !url1.endsWith('.jpg')) errors.url1 = 'Image URL needs to end in png or jpg (or jpeg)'
-        if (url2 && !url2.endsWith('.png') && !url2.endsWith('.jpg')) errors.url2 = 'Image URL needs to end in png or jpg (or jpeg)'
-        if (url3 && !url3.endsWith('.png') && !url3.endsWith('.jpg')) errors.url3 = 'Image URL needs to end in png or jpg (or jpeg)'
-        if (url4 && !url4.endsWith('.png') && !url4.endsWith('.jpg')) errors.url4 = 'Image URL needs to end in png or jpg (or jpeg)'
-        if (url5 && !url5.endsWith('.png') && !url5.endsWith('.jpg')) errors.url5 = 'Image URL needs to end in png or jpg (or jpeg)'
+        if (url1 && !url1.endsWith('.png') && !url1.endsWith('.jpg') && !url1.endsWith('.jpeg')) errors.url1 = 'Image URL needs to end in .png or .jpg (or .jpeg)'
+        if (url2 && !url2.endsWith('.png') && !url2.endsWith('.jpg') && !url2.endsWith('.jpeg')) errors.url2 = 'Image URL needs to end in .png or .jpg (or .jpeg)'
+        if (url3 && !url3.endsWith('.png') && !url3.endsWith('.jpg') && !url3.endsWith('.jpeg')) errors.url3 = 'Image URL needs to end in .png or .jpg (or .jpeg)'
+        if (url4 && !url4.endsWith('.png') && !url4.endsWith('.jpg') && !url4.endsWith('.jpeg')) errors.url4 = 'Image URL needs to end in .png or .jpg (or .jpeg)'
+        if (url5 && !url5.endsWith('.png') && !url5.endsWith('.jpg') && !url5.endsWith('.jpeg')) errors.url5 = 'Image URL needs to end in .png or .jpg (or .jpeg)'
         }
         setValidationErrors(errors)
         if (Object.keys(errors).length === 0) {//added error.length check to stop page if errors present
@@ -225,6 +226,7 @@ const SpotForm = ({ spot, formType }) => {
                             onChange={(e) => seturl2(e.target.value)}
                         />
                         </div>
+                        {validationErrors.url3 ? <p className="errors">{validationErrors.url3}</p> : ''}
                         <div>
                         <input className='photo-input3'
                             placeholder='Image URL'
@@ -233,6 +235,7 @@ const SpotForm = ({ spot, formType }) => {
                             onChange={(e) => seturl3(e.target.value)}
                         />
                         </div>
+                        {validationErrors.url4 ? <p className="errors">{validationErrors.url4}</p> : ''}
                         <div>
                         <input className='photo-input4'
                             placeholder='Image URL'
@@ -241,6 +244,7 @@ const SpotForm = ({ spot, formType }) => {
                             onChange={(e) => seturl4(e.target.value)}
                         />
                         </div>
+                        {validationErrors.url5 ? <p className="errors">{validationErrors.url5}</p> : ''}
                         <input className='photo-input5'
                             placeholder='Image URL'
                             type='text'

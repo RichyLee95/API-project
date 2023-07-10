@@ -56,7 +56,7 @@ const SingleSpot = () => {
                 </div>
                 <div className='img-box'>
                     <div className='prevImgcontainer'>
-                        <img className='prevImg' src={previewImage.url} />
+                        <img className='prevImg' onError={(e) => { e.target.src = 'https://impactmartialartsal.com/files/Impact-Martial-Arts_karate-instructor.png'; }} src={previewImage.url} />
                     </div>
                     {/* {console.log('PREVIMG',prevImg)} */}
                     {/* {spot.SpotImages} */}
@@ -64,7 +64,7 @@ const SingleSpot = () => {
                         {/* {previewImage ? <div><img src={previewImage.url} /></div> : ''} */}
                         {subImages.map((image) =>
 
-                        (<div className='subimages'><img class='fourpic' src={image.url} /></div>
+                        (<div className='subimages'><img class='fourpic' onError={(e) => { e.target.src = 'https://impactmartialartsal.com/files/Impact-Martial-Arts_karate-instructor.png'; }} src={image.url} /></div>
 
                         ))}
                     </div>
