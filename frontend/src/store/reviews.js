@@ -83,7 +83,27 @@ export const createReview = (review,spotId) => async (dispatch) => {
         return data
     }
 }
-    
+export const editReviewThunk = (updatedReview) => async (dispatch) => {
+    try {
+        const res = await csrfFetch(`/api/reviews/${updatedReview.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedReview),
+        });
+
+        if (res.ok) {
+            const editedReview = await res.json();
+            dispatch(editReview(editedReview));
+            return editedReview;
+        } else {
+            const errors = await res.json();
+            return errors;
+        }
+    } catch (errors) {
+        const data = await errors.json();
+        return data;
+    }
+};
     export const deleteReview = (reviewId) => async (dispatch) => {
         const res = await csrfFetch(`/api/reviews/${reviewId}`, {
             method: 'DELETE'
