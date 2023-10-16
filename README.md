@@ -29,11 +29,11 @@
 ### Create a Review
 ![Screenshot 2023-10-16 162537](https://github.com/RichyLee95/API-project/assets/123135524/6e9f2b09-20fd-4eb0-aae0-2bcc60618a79)
 
-- Reviews are created when logged in and viewing a specific campsite.
+- Reviews are created when logged in and viewing a specific spot. Review must contain more than 10 characters and atleast 1 star rating.
 ### View a Review
 ![Screenshot 2023-10-16 162449](https://github.com/RichyLee95/API-project/assets/123135524/b6d6a7ba-a95e-41db-9ac8-89f524bbc6fb)
 
-- Reviews can be seen when on a specific campsite page.
+- Reviews can be seen when on a specific spots page.
 ### Delete a Review
 - Delete your review for a spot.
 ## Contact Me
